@@ -20,7 +20,6 @@ namespace _1.DATA.Model
         public Guid Id { get; set; }
         public Guid? IdSP { get; set; }
         public Guid? IdMauSac { get; set; }
-        public Guid? AnhDaiDien { get; set; }
         public string? TenSPChiTiet { get; set; }
         public string? MaSPChiTiet { get; set; }
         public DateTime? NgayTao { get; set; }

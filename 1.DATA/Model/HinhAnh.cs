@@ -9,7 +9,9 @@ namespace _1.DATA.Model
     public class HinhAnh
     {
         public Guid Id { get; set; }
-        public Guid? IdSanPham { get; set; }
-        public bool TrangThai { get; set; }
+        public Guid? IdSPCT { get; set; }
+        public string? LinkAnh { get; set; }
+        public bool? TrangThai { get; set; }
+        public SanPhamChiTiet? sanPhamChiTiet { get; set; }
     }
 }

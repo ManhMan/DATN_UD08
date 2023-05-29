@@ -12,7 +12,7 @@ namespace _1.DATA.Model
         public Guid? IdSanPhamChiTiet { get; set; }
         public Guid? IdSize { get; set; }
         public int SoLuong { get; set; }
-        public Size? KichCo { get; set; }
+        public Size? Size { get; set; }
         public SanPhamChiTiet? SanPhamChitiet { get; set; }
     }
 }
