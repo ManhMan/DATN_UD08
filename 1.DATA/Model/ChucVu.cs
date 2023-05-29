@@ -14,6 +14,6 @@ namespace _1.DATA.Model
         }
         public Guid Id { get; set; }
         public string? Ten { get; set; }
-        //public virtual ICollection<NhanVien> nhanViens { get; set; }
+        public virtual ICollection<NhanVien> nhanViens { get; set; }
     }
 }
