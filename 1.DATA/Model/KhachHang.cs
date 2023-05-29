@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace _1.DATA.Model
 {
-    internal class KhachHang
+    public class KhachHang
     {
         public KhachHang()
         {

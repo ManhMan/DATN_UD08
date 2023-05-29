@@ -10,7 +10,7 @@ namespace _1.DATA.Model
     {
         public HoaDon()
         {
-            hoadonChitiets = new HashSet<HoadonChitiet>();
+            hoadonChitiets = new HashSet<HoaDonChiTiet>();
         }
 
         public Guid Id { get; set; }
@@ -26,6 +26,6 @@ namespace _1.DATA.Model
         public MaGiamGia? maGiamGia { get; set; }
         public KhachHang? khachHang { get; set; }
         public NhanVien? nhanVien { get; set; }
-        public virtual ICollection<HoadonChitiet> hoadonChitiets { get; set; }
+        public virtual ICollection<HoaDonChiTiet> hoadonChitiets { get; set; }
     }
 }

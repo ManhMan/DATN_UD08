@@ -10,12 +10,12 @@ namespace _1.DATA.Model
     {
         public GioHang()
         {
-            giohangChitiets = new HashSet<GiohangChitiet>();
+            giohangChitiets = new HashSet<GioHangChiTiet>();
         }
 
         public Guid Id { get; set; }
         public Guid? IdKH { get; set; }
         public KhachHang? KhachHang { get; set; }
-        public virtual ICollection<GiohangChitiet> giohangChitiets { get; set; }
+        public virtual ICollection<GioHangChiTiet> giohangChitiets { get; set; }
     }
 }

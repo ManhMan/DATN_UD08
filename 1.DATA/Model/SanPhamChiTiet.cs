@@ -8,10 +8,10 @@ namespace _1.DATA.Model
 {
     public class SanPhamChiTiet
     {
-        public SanphamChitiet()
+        public SanPhamChiTiet()
         {
-            giohangChitiets = new HashSet<GiohangChitiet>();
-            hoadonChitiets = new HashSet<HoadonChitiet>();
+            giohangChitiets = new HashSet<GioHangChiTiet>();
+            hoadonChitiets = new HashSet<HoaDonChiTiet>();
             hinhAnhs = new HashSet<HinhAnh>();
             theLoaiSanPhams = new HashSet<TheLoaiSanPham>();
             SizeSanPhams = new HashSet<SizeSanPham>();
@@ -33,8 +33,8 @@ namespace _1.DATA.Model
         public SanPham? sanPham { get; set; }
         public MauSac? mauSac { get; set; }
 
-        public virtual ICollection<GiohangChitiet> giohangChitiets { get; set; }
-        public virtual ICollection<HoadonChitiet> hoadonChitiets { get; set; }
+        public virtual ICollection<GioHangChiTiet> giohangChitiets { get; set; }
+        public virtual ICollection<HoaDonChiTiet> hoadonChitiets { get; set; }
         public virtual ICollection<HinhAnh> hinhAnhs { get; set; }
         public virtual ICollection<TheLoaiSanPham> theLoaiSanPhams { get; set; }
         public virtual ICollection<SizeSanPham> SizeSanPhams { get; set; }

@@ -10,7 +10,7 @@ namespace _1.DATA.Model
     {
         public SanPham()
         {
-            sanphamChitiets = new HashSet<SanphamChitiet>();
+            sanphamChitiets = new HashSet<SanPhamChiTiet>();
         }
 
         public Guid Id { get; set; }
@@ -18,6 +18,6 @@ namespace _1.DATA.Model
         public Guid? IdHang { get; set; }
         public int? TrangThai { get; set; }
         public Hang? hang { get; set; }
-        public virtual ICollection<SanphamChitiet> sanphamChitiets { get; set; }
+        public virtual ICollection<SanPhamChiTiet> sanphamChitiets { get; set; }
     }
 }

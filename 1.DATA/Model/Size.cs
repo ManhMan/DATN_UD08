@@ -11,13 +11,13 @@ namespace _1.DATA.Model
         public Size()
         {
             SizeSanPhams = new HashSet<SizeSanPham>();
-            giohangChitiets = new HashSet<GiohangChitiet>();
-            hoadonChitiets = new HashSet<HoadonChitiet>();
+            giohangChitiets = new HashSet<GioHangChiTiet>();
+            hoadonChitiets = new HashSet<GioHangChiTiet>();
         }
         public Guid Id { get; set; }
         public float? KichCo { get; set; }
         public virtual ICollection<SizeSanPham> SizeSanPhams { get; set; }
-        public virtual ICollection<GiohangChitiet> giohangChitiets { get; set; }
-        public virtual ICollection<HoadonChitiet> hoadonChitiets { get; set; }
+        public virtual ICollection<GioHangChiTiet> giohangChitiets { get; set; }
+        public virtual ICollection<GioHangChiTiet> hoadonChitiets { get; set; }
     }
 }

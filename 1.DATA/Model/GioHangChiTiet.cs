@@ -14,7 +14,7 @@ namespace _1.DATA.Model
         public Guid? IdSize { get; set; }
         public int SoLuong { get; set; }
         public decimal GiaBan { get; set; }
-        public SanphamChitiet? sanphamChitiet { get; set; }
+        public SanPhamChiTiet? sanphamChitiet { get; set; }
         public GioHang? gioHang { get; set; }
         public Size size { get; set; }
     }
