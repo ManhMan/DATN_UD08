@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace _1.DATA.Model
 {
-    internal class HinhAnh
+    public class HinhAnh
     {
+        public Guid Id { get; set; }
+        public Guid? IdSanPham { get; set; }
+        public bool TrangThai { get; set; }
     }
 }
