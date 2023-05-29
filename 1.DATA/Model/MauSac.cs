@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace _1.DATA.Model
 {
-    internal class MauSac
+    public class MauSac
     {
+        public MauSac()
+        {
+            sanphamChitiets = new HashSet<SanphamChitiet>();
+        }
+        public Guid Id { get; set; }
+        public string? TenMau { get; set; }
+        public virtual ICollection<SanphamChitiet> sanphamChitiets { get; set; }
     }
 }

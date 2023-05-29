@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace _1.DATA.Model
 {
-    internal class TheLoaiSanPham
+    public class TheLoaiSanPham
     {
+        public Guid Id { get; set; }
+        public Guid IdTheLoai { get; set; }
+        public Guid IdChiTietSP { get; set; }
+        public TheLoai? theLoai { get; set; }
+        public SanphamChitiet? sanphamChitiet { get; set; }
     }
 }
