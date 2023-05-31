@@ -8,9 +8,9 @@ namespace _1.DATA.Model
 {
     public class TheLoaiSanPham
     {
-        public Guid Id { get; set; }
-        public Guid IdTheLoai { get; set; }
-        public Guid IdChiTietSP { get; set; }
+        public Guid? Id { get; set; }
+        public Guid? IdTheLoai { get; set; }
+        public Guid? IdChiTietSP { get; set; }
         public TheLoai? theLoai { get; set; }
         public SanPhamChiTiet? sanphamChitiet { get; set; }
     }

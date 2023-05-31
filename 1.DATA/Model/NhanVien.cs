@@ -11,6 +11,7 @@ namespace _1.DATA.Model
         public NhanVien()
         {
             hoaDons = new HashSet<HoaDon>();
+            PhieuNhaps = new HashSet<PhieuNhap>();
             InverseIdGuiBcNavigation = new HashSet<NhanVien>();
 
         }
@@ -30,6 +31,7 @@ namespace _1.DATA.Model
         public virtual NhanVien? IdGuiBcNavigation { get; set; }
         public ChucVu? chucVu { get; set; }
         public virtual ICollection<HoaDon> hoaDons { get; set; }
+        public virtual ICollection<PhieuNhap> PhieuNhaps { get; set; }
         public virtual ICollection<NhanVien> InverseIdGuiBcNavigation { get; set; }
     }
 }

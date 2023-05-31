@@ -45,6 +45,10 @@ namespace _1.DATA.DatabaseContext
             modelBuilder.ApplyConfiguration(new SizeSanPhamConfiguration());
             modelBuilder.ApplyConfiguration(new TheloaiConfiguration());
             modelBuilder.ApplyConfiguration(new TheloaiSanphamConfiguration());
+            modelBuilder.ApplyConfiguration(new ChiTietPhieuNhapConfiguration());
+            modelBuilder.ApplyConfiguration(new PhieuNhapConfiguration());
+            modelBuilder.ApplyConfiguration(new NhaCungCapConfiguration());
+            modelBuilder.ApplyConfiguration(new EntityConfiguration());
             //seeddata
             //modelBuilder.Seed();
         }
@@ -66,5 +70,9 @@ namespace _1.DATA.DatabaseContext
         public DbSet<TheLoaiSanPham> TheLoaiSanPhams { get; set; }
         public DbSet<HinhAnh> HinhAnhs { get; set; }
         public DbSet<SizeSanPham> SizeSanPhams { get; set; }
+        public DbSet<PhieuNhap> PhieuNhaps { get; set; }
+        public DbSet<ChiTietPhieuNhap> ChiTietPhieuNhaps { get; set; }
+        public DbSet<Entity> Entities { get; set; }
+        public DbSet<NhaCungCap> NhaCungCaps { get; set; }
     }
 }

@@ -17,11 +17,10 @@ namespace _1.DATA.Model
         public Guid? IdMaGiamGia { get; set; }
         public Guid? IdKH { get; set; }
         public Guid? IdNV { get; set; }
-        public DateTime? NgayTao { get; set; }
         public int? TrangThai { get; set; }
         public decimal? TongTien { get; set; }
         public string? DiaChi { get; set; }
-        public string? MaHD { get; set; }
+        public string? GhiChu { get; set; }
 
         public MaGiamGia? maGiamGia { get; set; }
         public KhachHang? khachHang { get; set; }

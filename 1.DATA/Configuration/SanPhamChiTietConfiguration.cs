@@ -17,7 +17,6 @@ namespace _1.DATA.Configuration
             builder.HasKey(x => x.Id);
             builder.Property(x => x.IdSP).IsRequired();
             builder.Property(x => x.IdMauSac).IsRequired();
-            builder.Property(x => x.GiaNhap).IsRequired();
             builder.Property(x => x.GiaBan).IsRequired();
             builder.Property(x => x.TrangThai).IsRequired();
             builder.Property(x => x.TenSPChiTiet).IsRequired();

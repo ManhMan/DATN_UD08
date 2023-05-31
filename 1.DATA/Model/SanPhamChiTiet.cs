@@ -15,6 +15,7 @@ namespace _1.DATA.Model
             hinhAnhs = new HashSet<HinhAnh>();
             theLoaiSanPhams = new HashSet<TheLoaiSanPham>();
             SizeSanPhams = new HashSet<SizeSanPham>();
+            ChiTietPhieuNhaps = new HashSet<ChiTietPhieuNhap>();
         }
 
         public Guid Id { get; set; }
@@ -24,8 +25,8 @@ namespace _1.DATA.Model
         public string? MaSPChiTiet { get; set; }
         public DateTime? NgayTao { get; set; }
 
-        public decimal? GiaNhap { get; set; }
         public decimal GiaBan { get; set; }
+
         public int? TrangThai { get; set; }
 
 
@@ -37,5 +38,6 @@ namespace _1.DATA.Model
         public virtual ICollection<HinhAnh> hinhAnhs { get; set; }
         public virtual ICollection<TheLoaiSanPham> theLoaiSanPhams { get; set; }
         public virtual ICollection<SizeSanPham> SizeSanPhams { get; set; }
+        public virtual ICollection<ChiTietPhieuNhap> ChiTietPhieuNhaps { get; set; }
     }
 }

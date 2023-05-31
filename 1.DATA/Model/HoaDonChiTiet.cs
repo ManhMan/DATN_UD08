@@ -8,7 +8,6 @@ namespace _1.DATA.Model
 {
     public class HoaDonChiTiet
     {
-        public Guid Id { get; set; }
         public Guid? IdSPChitiet { get; set; }
         public Guid? IdHoaDon { get; set; }
         public Guid? IdSize { get; set; }

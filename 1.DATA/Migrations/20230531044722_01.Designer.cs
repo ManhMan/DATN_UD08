@@ -12,8 +12,8 @@ using _1.DATA.DatabaseContext;
 namespace _1.DATA.Migrations
 {
     [DbContext(typeof(CuahangDbContext))]
-    [Migration("20230529154209_db")]
-    partial class db
+    [Migration("20230531044722_01")]
+    partial class _01
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,6 +23,38 @@ namespace _1.DATA.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("_1.DATA.Model.ChiTietPhieuNhap", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("GiaNhap")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<Guid?>("IdPhieuNhap")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("IdSPCT")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("IdSize")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("SoLuong")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdPhieuNhap");
+
+                    b.HasIndex("IdSPCT");
+
+                    b.HasIndex("IdSize");
+
+                    b.ToTable("ChiTietPhieuNhap", (string)null);
+                });
 
             modelBuilder.Entity("_1.DATA.Model.ChucVu", b =>
                 {
@@ -37,6 +69,35 @@ namespace _1.DATA.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ChucVu", (string)null);
+                });
+
+            modelBuilder.Entity("_1.DATA.Model.Entity", b =>
+                {
+                    b.Property<Guid>("CreateBy")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("DeleteBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("UpdateBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool?>("isDelete")
+                        .HasColumnType("bit");
+
+                    b.HasKey("CreateBy");
+
+                    b.ToTable("Entity", (string)null);
                 });
 
             modelBuilder.Entity("_1.DATA.Model.GioHang", b =>
@@ -58,18 +119,10 @@ namespace _1.DATA.Migrations
 
             modelBuilder.Entity("_1.DATA.Model.GioHangChiTiet", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<decimal>("GiaBan")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<Guid?>("IdGioHang")
-                        .IsRequired()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("IdSPChitiet")
+                    b.Property<Guid?>("IdSPChitiet")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("IdSize")
@@ -78,9 +131,7 @@ namespace _1.DATA.Migrations
                     b.Property<int>("SoLuong")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdGioHang");
+                    b.HasKey("IdGioHang");
 
                     b.HasIndex("IdSPChitiet");
 
@@ -137,6 +188,9 @@ namespace _1.DATA.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("GhiChu")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<Guid?>("IdKH")
                         .IsRequired()
                         .HasColumnType("uniqueidentifier");
@@ -146,13 +200,6 @@ namespace _1.DATA.Migrations
 
                     b.Property<Guid?>("IdNV")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("MaHD")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("NgayTao")
-                        .IsRequired()
-                        .HasColumnType("datetime2");
 
                     b.Property<decimal?>("TongTien")
                         .IsRequired()
@@ -175,21 +222,15 @@ namespace _1.DATA.Migrations
 
             modelBuilder.Entity("_1.DATA.Model.HoaDonChiTiet", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<Guid?>("IdHoaDon")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("IdSPChitiet")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal?>("GiaBan")
                         .IsRequired()
                         .HasColumnType("decimal(18,2)");
-
-                    b.Property<Guid?>("IdHoaDon")
-                        .IsRequired()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("IdSPChitiet")
-                        .IsRequired()
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("IdSize")
                         .HasColumnType("uniqueidentifier");
@@ -198,9 +239,7 @@ namespace _1.DATA.Migrations
                         .IsRequired()
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdHoaDon");
+                    b.HasKey("IdHoaDon", "IdSPChitiet");
 
                     b.HasIndex("IdSPChitiet");
 
@@ -293,6 +332,29 @@ namespace _1.DATA.Migrations
                     b.ToTable("MauSac", (string)null);
                 });
 
+            modelBuilder.Entity("_1.DATA.Model.NhaCungCap", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("DiaChi")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Sdt")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Ten")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("TrangThai")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("NhaCungCap", (string)null);
+                });
+
             modelBuilder.Entity("_1.DATA.Model.NhanVien", b =>
                 {
                     b.Property<Guid>("Id")
@@ -354,6 +416,39 @@ namespace _1.DATA.Migrations
                     b.ToTable("NhanVien", (string)null);
                 });
 
+            modelBuilder.Entity("_1.DATA.Model.PhieuNhap", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("GhiChu")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("IdNhaCungCap")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IdNhanVien")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("MaPhieuNhap")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("TrangThai")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdNhaCungCap");
+
+                    b.HasIndex("IdNhanVien");
+
+                    b.ToTable("PhieuNhap", (string)null);
+                });
+
             modelBuilder.Entity("_1.DATA.Model.SanPham", b =>
                 {
                     b.Property<Guid>("Id")
@@ -386,10 +481,6 @@ namespace _1.DATA.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("GiaBan")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal?>("GiaNhap")
-                        .IsRequired()
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<Guid?>("IdMauSac")
@@ -483,23 +574,41 @@ namespace _1.DATA.Migrations
 
             modelBuilder.Entity("_1.DATA.Model.TheLoaiSanPham", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<Guid?>("IdTheLoai")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("IdChiTietSP")
+                    b.Property<Guid?>("IdChiTietSP")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("IdTheLoai")
+                    b.Property<Guid?>("Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Id");
+                    b.HasKey("IdTheLoai", "IdChiTietSP");
 
                     b.HasIndex("IdChiTietSP");
 
-                    b.HasIndex("IdTheLoai");
-
                     b.ToTable("TheLoaiSanPham", (string)null);
+                });
+
+            modelBuilder.Entity("_1.DATA.Model.ChiTietPhieuNhap", b =>
+                {
+                    b.HasOne("_1.DATA.Model.PhieuNhap", "phieuNhap")
+                        .WithMany("chiTietPhieuNhaps")
+                        .HasForeignKey("IdPhieuNhap");
+
+                    b.HasOne("_1.DATA.Model.SanPhamChiTiet", "sanPhamChiTiet")
+                        .WithMany("ChiTietPhieuNhaps")
+                        .HasForeignKey("IdSPCT");
+
+                    b.HasOne("_1.DATA.Model.Size", "size")
+                        .WithMany("ChiTietPhieuNhaps")
+                        .HasForeignKey("IdSize");
+
+                    b.Navigation("phieuNhap");
+
+                    b.Navigation("sanPhamChiTiet");
+
+                    b.Navigation("size");
                 });
 
             modelBuilder.Entity("_1.DATA.Model.GioHang", b =>
@@ -523,9 +632,7 @@ namespace _1.DATA.Migrations
 
                     b.HasOne("_1.DATA.Model.SanPhamChiTiet", "sanphamChitiet")
                         .WithMany("giohangChitiets")
-                        .HasForeignKey("IdSPChitiet")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("IdSPChitiet");
 
                     b.HasOne("_1.DATA.Model.Size", "size")
                         .WithMany("giohangChitiets")
@@ -610,6 +717,25 @@ namespace _1.DATA.Migrations
                     b.Navigation("IdGuiBcNavigation");
 
                     b.Navigation("chucVu");
+                });
+
+            modelBuilder.Entity("_1.DATA.Model.PhieuNhap", b =>
+                {
+                    b.HasOne("_1.DATA.Model.NhaCungCap", "nhaCungCap")
+                        .WithMany("phieuNhaps")
+                        .HasForeignKey("IdNhaCungCap")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("_1.DATA.Model.NhanVien", "nhanVien")
+                        .WithMany("PhieuNhaps")
+                        .HasForeignKey("IdNhanVien")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("nhaCungCap");
+
+                    b.Navigation("nhanVien");
                 });
 
             modelBuilder.Entity("_1.DATA.Model.SanPham", b =>
@@ -717,11 +843,23 @@ namespace _1.DATA.Migrations
                     b.Navigation("sanphamChitiets");
                 });
 
+            modelBuilder.Entity("_1.DATA.Model.NhaCungCap", b =>
+                {
+                    b.Navigation("phieuNhaps");
+                });
+
             modelBuilder.Entity("_1.DATA.Model.NhanVien", b =>
                 {
                     b.Navigation("InverseIdGuiBcNavigation");
 
+                    b.Navigation("PhieuNhaps");
+
                     b.Navigation("hoaDons");
+                });
+
+            modelBuilder.Entity("_1.DATA.Model.PhieuNhap", b =>
+                {
+                    b.Navigation("chiTietPhieuNhaps");
                 });
 
             modelBuilder.Entity("_1.DATA.Model.SanPham", b =>
@@ -731,6 +869,8 @@ namespace _1.DATA.Migrations
 
             modelBuilder.Entity("_1.DATA.Model.SanPhamChiTiet", b =>
                 {
+                    b.Navigation("ChiTietPhieuNhaps");
+
                     b.Navigation("SizeSanPhams");
 
                     b.Navigation("giohangChitiets");
@@ -744,6 +884,8 @@ namespace _1.DATA.Migrations
 
             modelBuilder.Entity("_1.DATA.Model.Size", b =>
                 {
+                    b.Navigation("ChiTietPhieuNhaps");
+
                     b.Navigation("SizeSanPhams");
 
                     b.Navigation("giohangChitiets");

@@ -14,11 +14,11 @@ namespace _1.DATA.Configuration
         public void Configure(EntityTypeBuilder<HoaDonChiTiet> builder)
         {
             builder.ToTable("HoadonChitiet");
-            builder.HasKey(x => x.Id);
+            builder.HasKey(x => new { x.IdHoaDon, x.IdSPChitiet });
+
             builder.Property(x => x.SoLuong).IsRequired();
             builder.Property(x => x.GiaBan).IsRequired();
-            builder.Property(x => x.IdSPChitiet).IsRequired();
-            builder.Property(x => x.IdHoaDon).IsRequired();
+
 
             builder.HasOne(x => x.hoaDon).WithMany(x => x.hoadonChitiets).HasForeignKey(x => x.IdHoaDon);
             builder.HasOne(x => x.sanphamChitiet).WithMany(x => x.hoadonChitiets).HasForeignKey(x => x.IdSPChitiet);
