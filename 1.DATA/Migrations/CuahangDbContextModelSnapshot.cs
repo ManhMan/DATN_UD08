@@ -424,10 +424,10 @@ namespace _1.DATA.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("IdNhaCungCap")
+                    b.Property<Guid?>("IdNhaCungCap")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("IdNhanVien")
+                    b.Property<Guid?>("IdNhanVien")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("MaPhieuNhap")
@@ -492,10 +492,6 @@ namespace _1.DATA.Migrations
                     b.Property<string>("MaSPChiTiet")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("NgayTao")
-                        .IsRequired()
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("TenSPChiTiet")
                         .IsRequired()
@@ -721,15 +717,11 @@ namespace _1.DATA.Migrations
                 {
                     b.HasOne("_1.DATA.Model.NhaCungCap", "nhaCungCap")
                         .WithMany("phieuNhaps")
-                        .HasForeignKey("IdNhaCungCap")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("IdNhaCungCap");
 
                     b.HasOne("_1.DATA.Model.NhanVien", "nhanVien")
                         .WithMany("PhieuNhaps")
-                        .HasForeignKey("IdNhanVien")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("IdNhanVien");
 
                     b.Navigation("nhaCungCap");
 

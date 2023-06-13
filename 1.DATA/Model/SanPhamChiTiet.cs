@@ -23,7 +23,6 @@ namespace _1.DATA.Model
         public Guid? IdMauSac { get; set; }
         public string? TenSPChiTiet { get; set; }
         public string? MaSPChiTiet { get; set; }
-        public DateTime? NgayTao { get; set; }
 
         public decimal GiaBan { get; set; }
 

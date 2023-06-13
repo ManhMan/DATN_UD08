@@ -248,8 +248,8 @@ namespace _1.DATA.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IdNhaCungCap = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IdNhanVien = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IdNhaCungCap = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    IdNhanVien = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     MaPhieuNhap = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TrangThai = table.Column<int>(type: "int", nullable: false),
                     GhiChu = table.Column<string>(type: "nvarchar(max)", nullable: false)
@@ -261,14 +261,12 @@ namespace _1.DATA.Migrations
                         name: "FK_PhieuNhap_NhaCungCap_IdNhaCungCap",
                         column: x => x.IdNhaCungCap,
                         principalTable: "NhaCungCap",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_PhieuNhap_NhanVien_IdNhanVien",
                         column: x => x.IdNhanVien,
                         principalTable: "NhanVien",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -280,7 +278,6 @@ namespace _1.DATA.Migrations
                     IdMauSac = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     TenSPChiTiet = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MaSPChiTiet = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NgayTao = table.Column<DateTime>(type: "datetime2", nullable: false),
                     GiaBan = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     TrangThai = table.Column<int>(type: "int", nullable: false)
                 },

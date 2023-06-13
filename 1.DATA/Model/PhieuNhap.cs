@@ -13,8 +13,8 @@ namespace _1.DATA.Model
             chiTietPhieuNhaps = new HashSet<ChiTietPhieuNhap>();
         }
         public Guid Id { get; set; }
-        public Guid IdNhaCungCap { get; set; }
-        public Guid IdNhanVien { get; set; }
+        public Guid? IdNhaCungCap { get; set; }
+        public Guid? IdNhanVien { get; set; }
         public string? MaPhieuNhap { get; set; }
         public int? TrangThai { get; set; }
         public string? GhiChu { get; set; }
