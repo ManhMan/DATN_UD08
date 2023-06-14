@@ -64,7 +64,7 @@ namespace _1_API.Controllers
         }
 
         [HttpPost]
-        [Route("Update/id")]
+        [Route("Update/{id}")]
         public async Task<IActionResult> UpdateNhaCungCap(Guid id, [FromForm] UpdateNhaCungCap ccv)
         {
             var result = await _repo.GetByIdAsync(id);

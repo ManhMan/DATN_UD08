@@ -59,7 +59,7 @@ namespace _1_API.Controllers
         }
 
         [HttpPost]
-        [Route("Update/id")]
+        [Route("Update/{id}")]
         public async Task<IActionResult> UpdateChucVu(Guid id,[FromForm] UpdateChucVu ucv)
         {
             var result = await _repo.GetByIdAsync(id);

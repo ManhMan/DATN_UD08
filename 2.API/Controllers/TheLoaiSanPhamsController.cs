@@ -61,7 +61,7 @@ namespace _1_API.Controllers
         }
 
         [HttpPost]
-        [Route("Update/id")]
+        [Route("Update/{id}")]
         public async Task<IActionResult> UpdateTheLoaiSanPham(Guid id, [FromForm] UpdateTheLoaiSP utl)
         {
             var result = await _repo.GetByIdAsync(id);
