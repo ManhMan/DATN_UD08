@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace _1.DATA.Migrations
 {
-    public partial class _01 : Migration
+    public partial class create_database : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,7 +14,14 @@ namespace _1.DATA.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Ten = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Ten = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreateByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UpdateByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DeleteByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    isDelete = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -22,28 +29,18 @@ namespace _1.DATA.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Entity",
-                columns: table => new
-                {
-                    CreateBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    UpdateBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    DeleteBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    isDelete = table.Column<bool>(type: "bit", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Entity", x => x.CreateBy);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Hang",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    TenHang = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    TenHang = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreateByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UpdateByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DeleteByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    isDelete = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -61,7 +58,14 @@ namespace _1.DATA.Migrations
                     DiaChi = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     GioiTinh = table.Column<bool>(type: "bit", nullable: true),
                     Sdt = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NgaySinh = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    NgaySinh = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreateByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UpdateByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DeleteByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    isDelete = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -78,7 +82,14 @@ namespace _1.DATA.Migrations
                     NgayKetthuc = table.Column<DateTime>(type: "datetime2", nullable: false),
                     SoLuong = table.Column<int>(type: "int", nullable: false),
                     TrangThai = table.Column<int>(type: "int", nullable: false),
-                    PhanTramGiam = table.Column<int>(type: "int", nullable: false)
+                    PhanTramGiam = table.Column<int>(type: "int", nullable: false),
+                    CreateByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UpdateByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DeleteByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    isDelete = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -90,7 +101,14 @@ namespace _1.DATA.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    TenMau = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    TenMau = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreateByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UpdateByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DeleteByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    isDelete = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -105,7 +123,14 @@ namespace _1.DATA.Migrations
                     Ten = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DiaChi = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Sdt = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TrangThai = table.Column<int>(type: "int", nullable: true)
+                    TrangThai = table.Column<int>(type: "int", nullable: false),
+                    CreateByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UpdateByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DeleteByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    isDelete = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -117,7 +142,14 @@ namespace _1.DATA.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    KichCo = table.Column<float>(type: "real", nullable: false)
+                    KichCo = table.Column<float>(type: "real", nullable: false),
+                    CreateByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UpdateByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DeleteByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    isDelete = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -129,7 +161,14 @@ namespace _1.DATA.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    TenTheLoai = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    TenTheLoai = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreateByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UpdateByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DeleteByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    isDelete = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -153,7 +192,14 @@ namespace _1.DATA.Migrations
                     DiaChi = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TrangThai = table.Column<int>(type: "int", nullable: false),
                     NgaySinh = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IdGuiBcNavigationId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    IdGuiBcNavigationId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    CreateByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UpdateByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DeleteByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    isDelete = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -178,7 +224,14 @@ namespace _1.DATA.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Ten = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IdHang = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    TrangThai = table.Column<int>(type: "int", nullable: false)
+                    TrangThai = table.Column<int>(type: "int", nullable: false),
+                    CreateByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UpdateByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DeleteByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    isDelete = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -196,7 +249,14 @@ namespace _1.DATA.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IdKH = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    IdKH = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreateByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UpdateByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DeleteByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    isDelete = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -220,7 +280,14 @@ namespace _1.DATA.Migrations
                     TrangThai = table.Column<int>(type: "int", nullable: false),
                     TongTien = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     DiaChi = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    GhiChu = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    GhiChu = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreateByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UpdateByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DeleteByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    isDelete = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -249,10 +316,16 @@ namespace _1.DATA.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     IdNhaCungCap = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    IdNhanVien = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     MaPhieuNhap = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TrangThai = table.Column<int>(type: "int", nullable: false),
-                    GhiChu = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    GhiChu = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreateByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UpdateByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DeleteByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    isDelete = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -263,10 +336,11 @@ namespace _1.DATA.Migrations
                         principalTable: "NhaCungCap",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_PhieuNhap_NhanVien_IdNhanVien",
-                        column: x => x.IdNhanVien,
+                        name: "FK_PhieuNhap_NhanVien_CreateByUserId",
+                        column: x => x.CreateByUserId,
                         principalTable: "NhanVien",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -279,7 +353,14 @@ namespace _1.DATA.Migrations
                     TenSPChiTiet = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MaSPChiTiet = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     GiaBan = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    TrangThai = table.Column<int>(type: "int", nullable: false)
+                    TrangThai = table.Column<int>(type: "int", nullable: false),
+                    CreateByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UpdateByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DeleteByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    isDelete = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -303,11 +384,18 @@ namespace _1.DATA.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IdPhieuNhap = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    IdSPCT = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    IdSize = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    IdPhieuNhap = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IdSPCT = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IdSize = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     GiaNhap = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    SoLuong = table.Column<int>(type: "int", nullable: false)
+                    SoLuong = table.Column<int>(type: "int", nullable: false),
+                    CreateByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UpdateByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DeleteByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    isDelete = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -316,17 +404,20 @@ namespace _1.DATA.Migrations
                         name: "FK_ChiTietPhieuNhap_PhieuNhap_IdPhieuNhap",
                         column: x => x.IdPhieuNhap,
                         principalTable: "PhieuNhap",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_ChiTietPhieuNhap_SanphamChitiet_IdSPCT",
                         column: x => x.IdSPCT,
                         principalTable: "SanphamChitiet",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_ChiTietPhieuNhap_Size_IdSize",
                         column: x => x.IdSize,
                         principalTable: "Size",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -334,9 +425,17 @@ namespace _1.DATA.Migrations
                 columns: table => new
                 {
                     IdGioHang = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IdSPChitiet = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    IdSize = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    SoLuong = table.Column<int>(type: "int", nullable: false)
+                    IdSPChitiet = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IdSize = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    SoLuong = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreateByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UpdateByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DeleteByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    isDelete = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -351,12 +450,14 @@ namespace _1.DATA.Migrations
                         name: "FK_GiohangChitiet_SanphamChitiet_IdSPChitiet",
                         column: x => x.IdSPChitiet,
                         principalTable: "SanphamChitiet",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_GiohangChitiet_Size_IdSize",
                         column: x => x.IdSize,
                         principalTable: "Size",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -364,9 +465,16 @@ namespace _1.DATA.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IdSPCT = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    IdSPCT = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     LinkAnh = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TrangThai = table.Column<bool>(type: "bit", nullable: true)
+                    TrangThai = table.Column<bool>(type: "bit", nullable: true),
+                    CreateByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UpdateByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DeleteByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    isDelete = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -375,7 +483,8 @@ namespace _1.DATA.Migrations
                         name: "FK_HinhAnh_SanphamChitiet_IdSPCT",
                         column: x => x.IdSPCT,
                         principalTable: "SanphamChitiet",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -384,9 +493,17 @@ namespace _1.DATA.Migrations
                 {
                     IdSPChitiet = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     IdHoaDon = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IdSize = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    IdSize = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     SoLuong = table.Column<int>(type: "int", nullable: false),
-                    GiaBan = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    GiaBan = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreateByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UpdateByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DeleteByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    isDelete = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -407,7 +524,8 @@ namespace _1.DATA.Migrations
                         name: "FK_HoadonChitiet_Size_IdSize",
                         column: x => x.IdSize,
                         principalTable: "Size",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -417,7 +535,14 @@ namespace _1.DATA.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     IdSanPhamChiTiet = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     IdSize = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    SoLuong = table.Column<int>(type: "int", nullable: false)
+                    SoLuong = table.Column<int>(type: "int", nullable: false),
+                    CreateByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UpdateByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DeleteByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    isDelete = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -442,7 +567,14 @@ namespace _1.DATA.Migrations
                 {
                     IdTheLoai = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     IdChiTietSP = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreateByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UpdateByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DeleteByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    isDelete = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -532,14 +664,14 @@ namespace _1.DATA.Migrations
                 column: "IdGuiBcNavigationId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_PhieuNhap_CreateByUserId",
+                table: "PhieuNhap",
+                column: "CreateByUserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_PhieuNhap_IdNhaCungCap",
                 table: "PhieuNhap",
                 column: "IdNhaCungCap");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PhieuNhap_IdNhanVien",
-                table: "PhieuNhap",
-                column: "IdNhanVien");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SanPham_IdHang",
@@ -576,9 +708,6 @@ namespace _1.DATA.Migrations
         {
             migrationBuilder.DropTable(
                 name: "ChiTietPhieuNhap");
-
-            migrationBuilder.DropTable(
-                name: "Entity");
 
             migrationBuilder.DropTable(
                 name: "GiohangChitiet");

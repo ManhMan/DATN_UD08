@@ -20,7 +20,7 @@ namespace _1.DATA.Configuration
             builder.Property(x => x.GhiChu).IsRequired();
 
             builder.HasOne(x => x.nhaCungCap).WithMany(x => x.phieuNhaps).HasForeignKey(x => x.IdNhaCungCap);
-            builder.HasOne(x => x.nhanVien).WithMany(x => x.PhieuNhaps).HasForeignKey(x => x.IdNhanVien);
+            builder.HasOne(x => x.nhanVien).WithMany(x => x.PhieuNhaps).HasForeignKey(x => x.CreateByUserId);
         }
     }
 }

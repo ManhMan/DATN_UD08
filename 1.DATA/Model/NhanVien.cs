@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace _1.DATA.Model
 {
-    public class NhanVien
+    public class NhanVien : Entity
     {
         public NhanVien()
         {
@@ -15,8 +15,7 @@ namespace _1.DATA.Model
             InverseIdGuiBcNavigation = new HashSet<NhanVien>();
 
         }
-        public Guid Id { get; set; }
-        public Guid? IdCvu { get; set; }
+        public Guid IdCvu { get; set; }
         public Guid? IdGuiBaoCao { get; set; }
         public string? Ten { get; set; }
         public string? MaNV { get; set; }

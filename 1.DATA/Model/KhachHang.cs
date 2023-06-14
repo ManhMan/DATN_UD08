@@ -6,14 +6,13 @@ using System.Threading.Tasks;
 
 namespace _1.DATA.Model
 {
-    public class KhachHang
+    public class KhachHang : Entity
     {
         public KhachHang()
         {
             GioHangs = new HashSet<GioHang>();
             hoaDons = new HashSet<HoaDon>();
         }
-        public Guid Id { get; set; }
         public string? Ten { get; set; }
         public string? Email { get; set; }
         public string? MatKhau { get; set; }

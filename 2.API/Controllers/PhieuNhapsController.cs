@@ -46,7 +46,6 @@ namespace _1_API.Controllers
             {
                 Id = Guid.NewGuid(),
                 IdNhaCungCap = ccv.IdNhaCungCap,
-                IdNhanVien = ccv.IdNhanVien,
                 MaPhieuNhap = ccv.MaPhieuNhap,
                 TrangThai = ccv.TrangThai,
                 GhiChu = ccv.GhiChu,
@@ -75,7 +74,6 @@ namespace _1_API.Controllers
             else
             {
                 result.IdNhaCungCap = ccv.IdNhaCungCap;
-                result.IdNhanVien = ccv.IdNhanVien;
                 result.MaPhieuNhap = ccv.MaPhieuNhap;
                 result.TrangThai = ccv.TrangThai;
                 result.GhiChu = ccv.GhiChu;

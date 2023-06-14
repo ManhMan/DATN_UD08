@@ -13,8 +13,8 @@ namespace _1_API.ViewModel.SanphamChitiet
             TheLoai = new List<SelectListItem>();
         }
         public Guid IdSPCT { get; set; }
-        public Guid? IdSP { get; set; }
-        public Guid? IdMauSac { get; set; }
+        public Guid IdSP { get; set; }
+        public Guid IdMauSac { get; set; }
         [Required(ErrorMessage = "Vui lòng nhập tên chi tiết")]
         public string? TenSPChiTiet { get; set; }
         public string? AnhDaiDien { get; set; }
@@ -25,7 +25,7 @@ namespace _1_API.ViewModel.SanphamChitiet
         public decimal? GiaNhap { get; set; }
         [Required(ErrorMessage = "Vui lòng nhập giá bán")]
         public decimal GiaBan { get; set; }
-        public int? TrangThai { get; set; }
+        public int TrangThai { get; set; }
         public IList<SelectListItem> TheLoai { get; set; }
         public IList<string> Selected { get; set; }
 

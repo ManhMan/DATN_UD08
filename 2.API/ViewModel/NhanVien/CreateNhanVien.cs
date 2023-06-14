@@ -7,7 +7,7 @@ namespace _1_API.ViewModel.NhanVien
     public class CreateNhanVien
     {
         public Guid? Id { get; set; }
-        public Guid? IdCvu { get; set; }
+        public Guid IdCvu { get; set; }
         public Guid? IdGuiBaoCao { get; set; }
         [Required(ErrorMessage = "Vui lòng nhập họ và tên")]
         public string? Ten { get; set; }

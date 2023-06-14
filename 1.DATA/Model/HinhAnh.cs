@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace _1.DATA.Model
 {
-    public class HinhAnh
+    public class HinhAnh : Entity
     {
-        public Guid Id { get; set; }
-        public Guid? IdSPCT { get; set; }
+        public Guid IdSPCT { get; set; }
         public string? LinkAnh { get; set; }
         public bool? TrangThai { get; set; }
         public SanPhamChiTiet? sanPhamChiTiet { get; set; }

@@ -12,8 +12,8 @@ using _1.DATA.DatabaseContext;
 namespace _1.DATA.Migrations
 {
     [DbContext(typeof(CuahangDbContext))]
-    [Migration("20230613160005_01")]
-    partial class _01
+    [Migration("20230614105710_create_database")]
+    partial class create_database
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,20 +30,41 @@ namespace _1.DATA.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("CreateByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("DeleteByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<decimal>("GiaNhap")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<Guid?>("IdPhieuNhap")
+                    b.Property<Guid>("IdPhieuNhap")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("IdSPCT")
+                    b.Property<Guid>("IdSPCT")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("IdSize")
+                    b.Property<Guid>("IdSize")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("SoLuong")
                         .HasColumnType("int");
+
+                    b.Property<Guid?>("UpdateByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool?>("isDelete")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -62,31 +83,23 @@ namespace _1.DATA.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Ten")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ChucVu", (string)null);
-                });
-
-            modelBuilder.Entity("_1.DATA.Model.Entity", b =>
-                {
-                    b.Property<Guid>("CreateBy")
-                        .ValueGeneratedOnAdd()
+                    b.Property<Guid>("CreateByUserId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime?>("CreateDate")
+                    b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("DeleteBy")
+                    b.Property<Guid?>("DeleteByUserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("DeleteDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("UpdateBy")
+                    b.Property<string>("Ten")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("UpdateByUserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("UpdateDate")
@@ -95,9 +108,9 @@ namespace _1.DATA.Migrations
                     b.Property<bool?>("isDelete")
                         .HasColumnType("bit");
 
-                    b.HasKey("CreateBy");
+                    b.HasKey("Id");
 
-                    b.ToTable("Entity", (string)null);
+                    b.ToTable("ChucVu", (string)null);
                 });
 
             modelBuilder.Entity("_1.DATA.Model.GioHang", b =>
@@ -106,9 +119,29 @@ namespace _1.DATA.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("IdKH")
-                        .IsRequired()
+                    b.Property<Guid>("CreateByUserId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("DeleteByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("IdKH")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("UpdateByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool?>("isDelete")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -119,17 +152,41 @@ namespace _1.DATA.Migrations
 
             modelBuilder.Entity("_1.DATA.Model.GioHangChiTiet", b =>
                 {
-                    b.Property<Guid?>("IdGioHang")
+                    b.Property<Guid>("IdGioHang")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("IdSPChitiet")
+                    b.Property<Guid>("CreateByUserId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("IdSize")
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("DeleteByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IdSPChitiet")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IdSize")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("SoLuong")
                         .HasColumnType("int");
+
+                    b.Property<Guid?>("UpdateByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool?>("isDelete")
+                        .HasColumnType("bit");
 
                     b.HasKey("IdGioHang");
 
@@ -146,9 +203,30 @@ namespace _1.DATA.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("CreateByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("DeleteByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("TenHang")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("UpdateByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool?>("isDelete")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -161,7 +239,19 @@ namespace _1.DATA.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("IdSPCT")
+                    b.Property<Guid>("CreateByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("DeleteByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("IdSPCT")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("LinkAnh")
@@ -169,6 +259,15 @@ namespace _1.DATA.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool?>("TrangThai")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid?>("UpdateByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool?>("isDelete")
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
@@ -184,6 +283,18 @@ namespace _1.DATA.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("CreateByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("DeleteByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("DiaChi")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -191,8 +302,7 @@ namespace _1.DATA.Migrations
                     b.Property<string>("GhiChu")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("IdKH")
-                        .IsRequired()
+                    b.Property<Guid>("IdKH")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("IdMaGiamGia")
@@ -201,13 +311,20 @@ namespace _1.DATA.Migrations
                     b.Property<Guid?>("IdNV")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<decimal?>("TongTien")
-                        .IsRequired()
+                    b.Property<decimal>("TongTien")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int?>("TrangThai")
-                        .IsRequired()
+                    b.Property<int>("TrangThai")
                         .HasColumnType("int");
+
+                    b.Property<Guid?>("UpdateByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool?>("isDelete")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -222,22 +339,44 @@ namespace _1.DATA.Migrations
 
             modelBuilder.Entity("_1.DATA.Model.HoaDonChiTiet", b =>
                 {
-                    b.Property<Guid?>("IdHoaDon")
+                    b.Property<Guid>("IdHoaDon")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("IdSPChitiet")
+                    b.Property<Guid>("IdSPChitiet")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<decimal?>("GiaBan")
-                        .IsRequired()
+                    b.Property<Guid>("CreateByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("DeleteByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("GiaBan")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<Guid?>("IdSize")
+                    b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int?>("SoLuong")
-                        .IsRequired()
+                    b.Property<Guid>("IdSize")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("SoLuong")
                         .HasColumnType("int");
+
+                    b.Property<Guid?>("UpdateByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool?>("isDelete")
+                        .HasColumnType("bit");
 
                     b.HasKey("IdHoaDon", "IdSPChitiet");
 
@@ -253,6 +392,18 @@ namespace _1.DATA.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CreateByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("DeleteByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("DiaChi")
                         .HasColumnType("nvarchar(max)");
@@ -278,6 +429,15 @@ namespace _1.DATA.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("UpdateByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool?>("isDelete")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id");
 
                     b.ToTable("KhachHang", (string)null);
@@ -289,28 +449,45 @@ namespace _1.DATA.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("CreateByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("DeleteByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Ma")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("NgayBatdau")
-                        .IsRequired()
+                    b.Property<DateTime>("NgayBatdau")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("NgayKetthuc")
-                        .IsRequired()
+                    b.Property<DateTime>("NgayKetthuc")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("PhanTramGiam")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SoLuong")
-                        .IsRequired()
+                    b.Property<int>("SoLuong")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TrangThai")
-                        .IsRequired()
+                    b.Property<int>("TrangThai")
                         .HasColumnType("int");
+
+                    b.Property<Guid?>("UpdateByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool?>("isDelete")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -323,9 +500,30 @@ namespace _1.DATA.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("CreateByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("DeleteByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("TenMau")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("UpdateByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool?>("isDelete")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -338,6 +536,18 @@ namespace _1.DATA.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("CreateByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("DeleteByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("DiaChi")
                         .HasColumnType("nvarchar(max)");
 
@@ -347,8 +557,17 @@ namespace _1.DATA.Migrations
                     b.Property<string>("Ten")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TrangThai")
+                    b.Property<int>("TrangThai")
                         .HasColumnType("int");
+
+                    b.Property<Guid?>("UpdateByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool?>("isDelete")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -364,6 +583,18 @@ namespace _1.DATA.Migrations
                     b.Property<string>("AnhNhanVien")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("CreateByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("DeleteByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("DiaChi")
                         .HasColumnType("nvarchar(max)");
 
@@ -374,8 +605,7 @@ namespace _1.DATA.Migrations
                     b.Property<bool?>("GioiTinh")
                         .HasColumnType("bit");
 
-                    b.Property<Guid?>("IdCvu")
-                        .IsRequired()
+                    b.Property<Guid>("IdCvu")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("IdGuiBaoCao")
@@ -407,6 +637,15 @@ namespace _1.DATA.Migrations
                         .IsRequired()
                         .HasColumnType("int");
 
+                    b.Property<Guid?>("UpdateByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool?>("isDelete")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id");
 
                     b.HasIndex("IdCvu");
@@ -422,14 +661,23 @@ namespace _1.DATA.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("CreateByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("DeleteByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("GhiChu")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid?>("IdNhaCungCap")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("IdNhanVien")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("MaPhieuNhap")
@@ -440,11 +688,20 @@ namespace _1.DATA.Migrations
                         .IsRequired()
                         .HasColumnType("int");
 
+                    b.Property<Guid?>("UpdateByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool?>("isDelete")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("IdNhaCungCap");
+                    b.HasIndex("CreateByUserId");
 
-                    b.HasIndex("IdNhanVien");
+                    b.HasIndex("IdNhaCungCap");
 
                     b.ToTable("PhieuNhap", (string)null);
                 });
@@ -455,17 +712,36 @@ namespace _1.DATA.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("IdHang")
-                        .IsRequired()
+                    b.Property<Guid>("CreateByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("DeleteByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("IdHang")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Ten")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TrangThai")
-                        .IsRequired()
+                    b.Property<int>("TrangThai")
                         .HasColumnType("int");
+
+                    b.Property<Guid?>("UpdateByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool?>("isDelete")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -480,15 +756,25 @@ namespace _1.DATA.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("CreateByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("DeleteByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<decimal>("GiaBan")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<Guid?>("IdMauSac")
-                        .IsRequired()
+                    b.Property<Guid>("IdMauSac")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("IdSP")
-                        .IsRequired()
+                    b.Property<Guid>("IdSP")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("MaSPChiTiet")
@@ -499,9 +785,17 @@ namespace _1.DATA.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TrangThai")
-                        .IsRequired()
+                    b.Property<int>("TrangThai")
                         .HasColumnType("int");
+
+                    b.Property<Guid?>("UpdateByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool?>("isDelete")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -518,9 +812,29 @@ namespace _1.DATA.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<float?>("KichCo")
-                        .IsRequired()
+                    b.Property<Guid>("CreateByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("DeleteByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<float>("KichCo")
                         .HasColumnType("real");
+
+                    b.Property<Guid?>("UpdateByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool?>("isDelete")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -533,16 +847,35 @@ namespace _1.DATA.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("IdSanPhamChiTiet")
-                        .IsRequired()
+                    b.Property<Guid>("CreateByUserId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("IdSize")
-                        .IsRequired()
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("DeleteByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("IdSanPhamChiTiet")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IdSize")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("SoLuong")
                         .HasColumnType("int");
+
+                    b.Property<Guid?>("UpdateByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool?>("isDelete")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -559,9 +892,30 @@ namespace _1.DATA.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("CreateByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("DeleteByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("TenTheLoai")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("UpdateByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool?>("isDelete")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -570,14 +924,35 @@ namespace _1.DATA.Migrations
 
             modelBuilder.Entity("_1.DATA.Model.TheLoaiSanPham", b =>
                 {
-                    b.Property<Guid?>("IdTheLoai")
+                    b.Property<Guid>("IdTheLoai")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("IdChiTietSP")
+                    b.Property<Guid>("IdChiTietSP")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("Id")
+                    b.Property<Guid>("CreateByUserId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("DeleteByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("UpdateByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool?>("isDelete")
+                        .HasColumnType("bit");
 
                     b.HasKey("IdTheLoai", "IdChiTietSP");
 
@@ -590,15 +965,21 @@ namespace _1.DATA.Migrations
                 {
                     b.HasOne("_1.DATA.Model.PhieuNhap", "phieuNhap")
                         .WithMany("chiTietPhieuNhaps")
-                        .HasForeignKey("IdPhieuNhap");
+                        .HasForeignKey("IdPhieuNhap")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("_1.DATA.Model.SanPhamChiTiet", "sanPhamChiTiet")
                         .WithMany("ChiTietPhieuNhaps")
-                        .HasForeignKey("IdSPCT");
+                        .HasForeignKey("IdSPCT")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("_1.DATA.Model.Size", "size")
                         .WithMany("ChiTietPhieuNhaps")
-                        .HasForeignKey("IdSize");
+                        .HasForeignKey("IdSize")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("phieuNhap");
 
@@ -628,11 +1009,15 @@ namespace _1.DATA.Migrations
 
                     b.HasOne("_1.DATA.Model.SanPhamChiTiet", "sanphamChitiet")
                         .WithMany("giohangChitiets")
-                        .HasForeignKey("IdSPChitiet");
+                        .HasForeignKey("IdSPChitiet")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("_1.DATA.Model.Size", "size")
                         .WithMany("giohangChitiets")
-                        .HasForeignKey("IdSize");
+                        .HasForeignKey("IdSize")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("gioHang");
 
@@ -645,7 +1030,9 @@ namespace _1.DATA.Migrations
                 {
                     b.HasOne("_1.DATA.Model.SanPhamChiTiet", "sanPhamChiTiet")
                         .WithMany("hinhAnhs")
-                        .HasForeignKey("IdSPCT");
+                        .HasForeignKey("IdSPCT")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("sanPhamChiTiet");
                 });
@@ -689,7 +1076,9 @@ namespace _1.DATA.Migrations
 
                     b.HasOne("_1.DATA.Model.Size", "size")
                         .WithMany("hoadonChitiets")
-                        .HasForeignKey("IdSize");
+                        .HasForeignKey("IdSize")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("hoaDon");
 
@@ -717,13 +1106,15 @@ namespace _1.DATA.Migrations
 
             modelBuilder.Entity("_1.DATA.Model.PhieuNhap", b =>
                 {
+                    b.HasOne("_1.DATA.Model.NhanVien", "nhanVien")
+                        .WithMany("PhieuNhaps")
+                        .HasForeignKey("CreateByUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("_1.DATA.Model.NhaCungCap", "nhaCungCap")
                         .WithMany("phieuNhaps")
                         .HasForeignKey("IdNhaCungCap");
-
-                    b.HasOne("_1.DATA.Model.NhanVien", "nhanVien")
-                        .WithMany("PhieuNhaps")
-                        .HasForeignKey("IdNhanVien");
 
                     b.Navigation("nhaCungCap");
 

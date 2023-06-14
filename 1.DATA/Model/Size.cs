@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace _1.DATA.Model
 {
-    public class Size
+    public class Size : Entity
     {
         public Size()
         {
@@ -14,8 +14,7 @@ namespace _1.DATA.Model
             giohangChitiets = new HashSet<GioHangChiTiet>();
             ChiTietPhieuNhaps = new HashSet<ChiTietPhieuNhap>();
         }
-        public Guid Id { get; set; }
-        public float? KichCo { get; set; }
+        public float KichCo { get; set; }
         public virtual ICollection<SizeSanPham> SizeSanPhams { get; set; }
         public virtual ICollection<GioHangChiTiet> giohangChitiets { get; set; }
         public virtual ICollection<HoaDonChiTiet> hoadonChitiets { get; set; }
