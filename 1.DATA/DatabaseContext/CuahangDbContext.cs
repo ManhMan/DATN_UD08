@@ -23,7 +23,7 @@ namespace _1.DATA.DatabaseContext
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // sửa cái này
-            base.OnConfiguring(optionsBuilder.UseSqlServer("Server=HDGNGUYENTIEN\\SQLEXPRESS;Database=DATN_UD08_Database;Trusted_Connection=True;"));
+            base.OnConfiguring(optionsBuilder.UseSqlServer("Server=DESKTOP-T4L1DE8\\SQLEXPRESS;Database=DATN_UD08_Database;Trusted_Connection=True;"));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -48,7 +48,6 @@ namespace _1.DATA.DatabaseContext
             modelBuilder.ApplyConfiguration(new ChiTietPhieuNhapConfiguration());
             modelBuilder.ApplyConfiguration(new PhieuNhapConfiguration());
             modelBuilder.ApplyConfiguration(new NhaCungCapConfiguration());
-            modelBuilder.ApplyConfiguration(new EntityConfiguration());
             //seeddata
             //modelBuilder.Seed();
         }
@@ -72,7 +71,6 @@ namespace _1.DATA.DatabaseContext
         public DbSet<SizeSanPham> SizeSanPhams { get; set; }
         public DbSet<PhieuNhap> PhieuNhaps { get; set; }
         public DbSet<ChiTietPhieuNhap> ChiTietPhieuNhaps { get; set; }
-        public DbSet<Entity> Entities { get; set; }
         public DbSet<NhaCungCap> NhaCungCaps { get; set; }
     }
 }

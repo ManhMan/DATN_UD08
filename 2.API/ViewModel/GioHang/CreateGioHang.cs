@@ -2,6 +2,6 @@
 {
     public class CreateGioHang
     {
-        public Guid? IdKhacHang { get; set; }
+        public Guid IdKhacHang { get; set; }
     }
 }

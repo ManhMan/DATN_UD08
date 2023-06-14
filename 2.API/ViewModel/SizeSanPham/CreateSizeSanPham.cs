@@ -2,8 +2,8 @@
 {
     public class CreateSizeSanPham
     {
-        public Guid? IdSanPhamChiTiet { get; set; }
-        public Guid? IdSize { get; set; }
+        public Guid IdSanPhamChiTiet { get; set; }
+        public Guid IdSize { get; set; }
         public int SoLuong { get; set; }
     }
 }
