@@ -150,7 +150,8 @@ namespace _1.DATA.Migrations
 
             modelBuilder.Entity("_1.DATA.Model.GioHangChiTiet", b =>
                 {
-                    b.Property<Guid>("IdGioHang")
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("CreateByUserId")
@@ -165,7 +166,7 @@ namespace _1.DATA.Migrations
                     b.Property<DateTime?>("DeleteDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("IdGioHang")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("IdSPChitiet")
@@ -186,7 +187,9 @@ namespace _1.DATA.Migrations
                     b.Property<bool?>("isDelete")
                         .HasColumnType("bit");
 
-                    b.HasKey("IdGioHang");
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdGioHang");
 
                     b.HasIndex("IdSPChitiet");
 
@@ -337,10 +340,8 @@ namespace _1.DATA.Migrations
 
             modelBuilder.Entity("_1.DATA.Model.HoaDonChiTiet", b =>
                 {
-                    b.Property<Guid>("IdHoaDon")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("IdSPChitiet")
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("CreateByUserId")
@@ -358,7 +359,10 @@ namespace _1.DATA.Migrations
                     b.Property<decimal>("GiaBan")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("IdHoaDon")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IdSPChitiet")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("IdSize")
@@ -376,7 +380,9 @@ namespace _1.DATA.Migrations
                     b.Property<bool?>("isDelete")
                         .HasColumnType("bit");
 
-                    b.HasKey("IdHoaDon", "IdSPChitiet");
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdHoaDon");
 
                     b.HasIndex("IdSPChitiet");
 
@@ -922,10 +928,8 @@ namespace _1.DATA.Migrations
 
             modelBuilder.Entity("_1.DATA.Model.TheLoaiSanPham", b =>
                 {
-                    b.Property<Guid>("IdTheLoai")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("IdChiTietSP")
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("CreateByUserId")
@@ -940,7 +944,10 @@ namespace _1.DATA.Migrations
                     b.Property<DateTime?>("DeleteDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("IdChiTietSP")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IdTheLoai")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UpdateByUserId")
@@ -952,9 +959,11 @@ namespace _1.DATA.Migrations
                     b.Property<bool?>("isDelete")
                         .HasColumnType("bit");
 
-                    b.HasKey("IdTheLoai", "IdChiTietSP");
+                    b.HasKey("Id");
 
                     b.HasIndex("IdChiTietSP");
+
+                    b.HasIndex("IdTheLoai");
 
                     b.ToTable("TheLoaiSanPham", (string)null);
                 });

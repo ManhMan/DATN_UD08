@@ -424,11 +424,11 @@ namespace _1.DATA.Migrations
                 name: "GiohangChitiet",
                 columns: table => new
                 {
-                    IdGioHang = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     IdSPChitiet = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IdGioHang = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     IdSize = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     SoLuong = table.Column<int>(type: "int", nullable: false),
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreateByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     UpdateByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     DeleteByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
@@ -439,7 +439,7 @@ namespace _1.DATA.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_GiohangChitiet", x => x.IdGioHang);
+                    table.PrimaryKey("PK_GiohangChitiet", x => x.Id);
                     table.ForeignKey(
                         name: "FK_GiohangChitiet_GioHang_IdGioHang",
                         column: x => x.IdGioHang,
@@ -491,12 +491,12 @@ namespace _1.DATA.Migrations
                 name: "HoadonChitiet",
                 columns: table => new
                 {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     IdSPChitiet = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     IdHoaDon = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     IdSize = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     SoLuong = table.Column<int>(type: "int", nullable: false),
                     GiaBan = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreateByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     UpdateByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     DeleteByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
@@ -507,7 +507,7 @@ namespace _1.DATA.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_HoadonChitiet", x => new { x.IdHoaDon, x.IdSPChitiet });
+                    table.PrimaryKey("PK_HoadonChitiet", x => x.Id);
                     table.ForeignKey(
                         name: "FK_HoadonChitiet_HoaDon_IdHoaDon",
                         column: x => x.IdHoaDon,
@@ -565,9 +565,9 @@ namespace _1.DATA.Migrations
                 name: "TheLoaiSanPham",
                 columns: table => new
                 {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     IdTheLoai = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     IdChiTietSP = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreateByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     UpdateByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     DeleteByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
@@ -578,7 +578,7 @@ namespace _1.DATA.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TheLoaiSanPham", x => new { x.IdTheLoai, x.IdChiTietSP });
+                    table.PrimaryKey("PK_TheLoaiSanPham", x => x.Id);
                     table.ForeignKey(
                         name: "FK_TheLoaiSanPham_SanphamChitiet_IdChiTietSP",
                         column: x => x.IdChiTietSP,
@@ -614,6 +614,11 @@ namespace _1.DATA.Migrations
                 column: "IdKH");
 
             migrationBuilder.CreateIndex(
+                name: "IX_GiohangChitiet_IdGioHang",
+                table: "GiohangChitiet",
+                column: "IdGioHang");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_GiohangChitiet_IdSize",
                 table: "GiohangChitiet",
                 column: "IdSize");
@@ -642,6 +647,11 @@ namespace _1.DATA.Migrations
                 name: "IX_HoaDon_IdNV",
                 table: "HoaDon",
                 column: "IdNV");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_HoadonChitiet_IdHoaDon",
+                table: "HoadonChitiet",
+                column: "IdHoaDon");
 
             migrationBuilder.CreateIndex(
                 name: "IX_HoadonChitiet_IdSize",
@@ -702,6 +712,11 @@ namespace _1.DATA.Migrations
                 name: "IX_TheLoaiSanPham_IdChiTietSP",
                 table: "TheLoaiSanPham",
                 column: "IdChiTietSP");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TheLoaiSanPham_IdTheLoai",
+                table: "TheLoaiSanPham",
+                column: "IdTheLoai");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

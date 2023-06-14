@@ -14,7 +14,7 @@ namespace _1.DATA.Configuration
         public void Configure(EntityTypeBuilder<HoaDonChiTiet> builder)
         {
             builder.ToTable("HoadonChitiet");
-            builder.HasKey(x => new { x.IdHoaDon, x.IdSPChitiet });
+            builder.HasKey(x => x.Id);
 
             builder.Property(x => x.SoLuong).IsRequired();
             builder.Property(x => x.GiaBan).IsRequired();

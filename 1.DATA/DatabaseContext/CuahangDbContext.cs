@@ -23,7 +23,7 @@ namespace _1.DATA.DatabaseContext
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // sửa cái này
-            base.OnConfiguring(optionsBuilder.UseSqlServer("Server=DESKTOP-T4L1DE8\\SQLEXPRESS;Database=DATN_UD08_Database;Trusted_Connection=True;"));
+            base.OnConfiguring(optionsBuilder.UseSqlServer("Server=HDGNGUYENTIEN\\SQLEXPRESS;Database=DATN_UD08_Database;Trusted_Connection=True;"));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
