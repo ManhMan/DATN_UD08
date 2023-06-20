@@ -4,7 +4,325 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - _4.ClientView</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/_4.ClientView.styles.css" asp-append-version="true" />
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
+</head>
+<body>
+    <div class="body">
+            <div class="banner">
+                <img src="~/img/banner.png" alt="" width="100%">
+            </div>
+        <div class="container">
+            <div class="section_service">
+
+                <ul class="nav justify-content-center">
+                    <li class="nav-item">
+                        <img src="~/img/icon/local_shipping_FILL0_wght400_GRAD200_opsz48.svg" alt="">
+                        <h3>GIAO HÀNG TOÀN QUỐC</h3>
+                        <P>Miễn phí vận chuyển với các đơn hàng trị </P>
+                        <p>giá trên 2.000.000Đ</p>
+                    </li>
+                    <li class="nav-item">
+                        <img src="~/img/icon/phone_in_talk_FILL0_wght400_GRAD200_opsz48.svg" alt="">
+                        <h3>HỖ TRỢ ONLINE 24/24</h3>
+                        <P>Luôn hỗ trợ khách hàng 24/24 tất cả các </P>
+                        <p>ngày trong tuần</p>
+                    </li>
+                    <li class="nav-item">
+                        <img src="~/img/icon/published_with_changes_FILL0_wght400_GRAD200_opsz48.svg" alt="">
+                        <h3>ĐỔI HÀNG DỄ DÀNG</h3>
+                        <P>Miễn phí đổi trả trong vòng 30 ngày đầu   </P>
+                        <p>tiên cho tất cả các mặt hàng</p>
+                    </li>
+                    <li class="nav-item">
+                        <img src="~/img/icon/redeem_FILL0_wght400_GRAD200_opsz48.svg" alt="">
+                        <h3>QUÀ TẶNG HẤP DẪN</h3>
+                        <P>Chương trình khuyễn mãi cực lớn và hấp  </P>
+                        <p>dẫn hàng tháng</p>
+                    </li>
+                </ul>
+            </div>
+            <!-- Banner body -->
+
+
+            <div class="produce__new">
+                <h2> <SPan>&diams;</SPan> SẢN PHẨM MỚI <SPan>&diams;</SPan></h2>
+                <P class="title">Các sản phẩm mới tại cửa hàng</P>
+                <div class="row row-cols-1 row-cols-md-4 g-4">
+                    <div class="col">
+                        <div class="card h-70 text-center">
+                            <img src="{{products[0].avatar}}"
+                                 class="card-img img-fluid"
+                                 alt="" />
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="#ChiTietSP/0">{{products[0].name}}</a>
+                                    <p class="card-text">${{products[0].giaBan}}</p>
+                                </h5>
+                                <p class="card-textt"></p>
+                                <div class="d-grid col-10 mx-auto">
+                                    <button class="btn btn-outline-light border-radius-sm"
+                                            type="button">
+                                        <i class="bi bi-cart-dash-fill"></i>
+                                        Thêm vào giỏ hàng
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-70 text-center">
+                            <img src="{{products[2].avatar}}"
+                                 class="card-img img-fluid"
+                                 alt="" />
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="#ChiTietSP/2">{{products[2].name}}</a>
+                                    <p class="card-text">${{products[2].giaBan}}</p>
+                                </h5>
+                                <p class="card-textt"></p>
+                                <div class="d-grid col-10 mx-auto">
+                                    <button class="btn btn-outline-light border-radius-sm"
+                                            type="button">
+                                        <i class="bi bi-cart-dash-fill"></i>
+                                        Thêm vào giỏ hàng
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-70 text-center">
+                            <img src="{{products[1].avatar}}"
+                                 class="card-img img-fluid"
+                                 alt="" />
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="#ChiTietSP/1">{{products[1].name}}</a>
+                                    <p class="card-text">${{products[1].giaBan}}</p>
+                                </h5>
+                                <p class="card-textt"></p>
+                                <div class="d-grid col-10 mx-auto">
+                                    <button class="btn btn-outline-light border-radius-sm"
+                                            type="button">
+                                        <i class="bi bi-cart-dash-fill"></i>
+                                        Thêm vào giỏ hàng
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-70 text-center">
+                            <img src="{{products[3].avatar}}"
+                                 class="card-img img-fluid"
+                                 alt="" />
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="#ChiTietSP/3">{{products[3].name}}</a>
+                                    <p class="card-text">${{products[3].giaBan}}</p>
+                                </h5>
+                                <p class="card-textt"></p>
+                                <div class="d-grid col-10 mx-auto">
+                                    <button class="btn btn-outline-light border-radius-sm"
+                                            type="button">
+                                        <i class="bi bi-cart-dash-fill"></i>
+                                        Thêm vào giỏ hàng
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="more">
+                <a href="#sanPham">XEM TẤT CẢ</a>
+            </div>
+
+            <!-- end slide -->
+            <!--end - product_new  -->
+            <div class="produce__new">
+                <h2><SPan>&diams;</SPan> SẢN PHẨM BÁN CHẠY <SPan>&diams;</SPan></h2>
+                <p class="title">Các sản phẩm bán chạy tại cửa hàng</p>
+                <div class="banner-body">
+                    <div class="container">
+                        <div class="row banner3">
+                            <div class="col-4">
+                                <div class="thumb">
+                                    <img src="./img/banner_1.jpg" alt="" />
+                                    <img src="./img/banner_2.jpg" alt="" />
+                                </div>
+                            </div>
+
+                            <div class="col-4">
+                                <div class="thumb">
+                                    <img src="./img/banner_3.jpg" alt="" width="100%" height="100%" />
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="thumb">
+                                    <img src="./img/banner_4.jpg" alt="" />
+                                    <img src="./img/banner_5.jpg" alt="" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row row-cols-1 row-cols-md-4 g-4">
+                    <div class="col">
+                        <div class="card h-70 text-center">
+                            <img src="{{products[4].avatar}}"
+                                 class="card-img img-fluid"
+                                 alt="" />
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="#ChiTietSP/4">{{products[4].name}}</a>
+                                    <p class="card-text">${{products[4].giaBan}}</p>
+                                </h5>
+                                <p class="card-textt"></p>
+                                <div class="d-grid col-10 mx-auto">
+                                    <button class="btn btn-outline-light border-radius-sm"
+                                            type="button">
+                                        <i class="bi bi-cart-dash-fill"></i>
+                                        Thêm vào giỏ hàng
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-70 text-center">
+                            <img src="{{products[5].avatar}}"
+                                 class="card-img img-fluid"
+                                 alt="" />
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="#ChiTietSP/5">{{products[5].name}}</a>
+                                    <p class="card-text">${{products[5].giaBan}}</p>
+                                </h5>
+                                <p class="card-textt"></p>
+                                <div class="d-grid col-10 mx-auto">
+                                    <button class="btn btn-outline-light border-radius-sm"
+                                            type="button">
+                                        <i class="bi bi-cart-dash-fill"></i>
+                                        Thêm vào giỏ hàng
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-70 text-center">
+                            <img src="{{products[6].avatar}}"
+                                 class="card-img img-fluid"
+                                 alt="" />
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="#ChiTietSP/6">{{products[6].name}}</a>
+                                    <p class="card-text">${{products[6].giaBan}}</p>
+                                </h5>
+                                <p class="card-textt"></p>
+                                <div class="d-grid col-10 mx-auto">
+                                    <button class="btn btn-outline-light border-radius-sm"
+                                            type="button">
+                                        <i class="bi bi-cart-dash-fill"></i>
+                                        Thêm vào giỏ hàng
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-70 text-center">
+                            <img src="{{products[7].avatar}}"
+                                 class="card-img img-fluid"
+                                 alt="" />
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="#ChiTietSP/7">{{products[7].name}}</a>
+                                    <p class="card-text">${{products[7].giaBan}}</p>
+                                </h5>
+                                <p class="card-textt"></p>
+                                <div class="d-grid col-10 mx-auto">
+                                    <button class="btn btn-outline-light border-radius-sm"
+                                            type="button">
+                                        <i class="bi bi-cart-dash-fill"></i>
+                                        Thêm vào giỏ hàng
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="more">
+                <a href="#sanPham">XEM TẤT CẢ</a>
+            </div>
+            <!--end - product_new  -->
+            <div class="body_banner">
+                <div class="row">
+                    <div class="col-3 imggg"><img src="img/m_bn_2_1.jpg" alt="" /></div>
+                    <div class="col-6"><img src="img/m_bn_2_2.jpg" alt="" /></div>
+                    <div class="col-3 imggg"><img src="img/m_bn_2_3.jpg" alt="" /></div>
+                </div>
+            </div>
+            <!--end - product_new  -->
+            <div class="news">
+                <h2><SPan>&diams;</SPan> TIN TỨC <SPan>&diams;</SPan></h2>
+                <p class="title">Tổng hợp tin tức mẹo vặt cho bạn</p>
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    <div class="col">
+                        <div class="card h-100">
+                            <img src="..." class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100">
+                            <img src="..." class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a short card.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100">
+                            <img src="..." class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100">
+                            <img src="..." class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END body -->
+    <!--  -->
+
+
+</body>
+</html>
