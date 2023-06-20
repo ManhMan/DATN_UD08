@@ -17,11 +17,9 @@ namespace _1.DATA.Configuration
             builder.HasKey(x => x.Id);
             builder.Property(x => x.TrangThai).IsRequired();
             builder.Property(x => x.TongTien).IsRequired();
-            builder.Property(x => x.NgayTao).IsRequired();
             builder.Property(x => x.DiaChi).IsRequired();
             builder.Property(x => x.IdNV);
             builder.Property(x => x.IdKH).IsRequired();
-            builder.Property(x => x.MaHD);
 
             builder.HasOne(x => x.maGiamGia).WithMany(x => x.hoaDons).HasForeignKey(x => x.IdMaGiamGia);
             builder.HasOne(x => x.khachHang).WithMany(x => x.hoaDons).HasForeignKey(x => x.IdKH);

@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace _1.DATA.Model
 {
-    public class NhanVien
+    public class NhanVien : Entity
     {
         public NhanVien()
         {
             hoaDons = new HashSet<HoaDon>();
+            PhieuNhaps = new HashSet<PhieuNhap>();
             InverseIdGuiBcNavigation = new HashSet<NhanVien>();
 
         }
-        public Guid Id { get; set; }
-        public Guid? IdCvu { get; set; }
+        public Guid IdCvu { get; set; }
         public Guid? IdGuiBaoCao { get; set; }
         public string? Ten { get; set; }
         public string? MaNV { get; set; }
@@ -30,6 +30,7 @@ namespace _1.DATA.Model
         public virtual NhanVien? IdGuiBcNavigation { get; set; }
         public ChucVu? chucVu { get; set; }
         public virtual ICollection<HoaDon> hoaDons { get; set; }
+        public virtual ICollection<PhieuNhap> PhieuNhaps { get; set; }
         public virtual ICollection<NhanVien> InverseIdGuiBcNavigation { get; set; }
     }
 }

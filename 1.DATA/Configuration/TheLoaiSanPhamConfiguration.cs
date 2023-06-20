@@ -15,8 +15,6 @@ namespace _1.DATA.Configuration
         {
             builder.ToTable("TheLoaiSanPham");
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.IdTheLoai).IsRequired();
-            builder.Property(x => x.IdChiTietSP).IsRequired();
             builder.HasOne(x => x.theLoai).WithMany(x => x.theloaiSanPhams).HasForeignKey(x => x.IdTheLoai);
             builder.HasOne(x => x.sanphamChitiet).WithMany(x => x.theLoaiSanPhams).HasForeignKey(x => x.IdChiTietSP);
         }
