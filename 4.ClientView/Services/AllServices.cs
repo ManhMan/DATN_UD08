@@ -1,5 +1,4 @@
 ﻿using _1_API.ViewModel.ChucVu;
-using Data.ModelsClass;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using CustomerViews.IServices;

@@ -1,5 +1,4 @@
 ﻿using _1_API.ViewModel.NhanVien;
-using Data.ModelsClass;
 
 namespace CustomerViews.IServices
 {

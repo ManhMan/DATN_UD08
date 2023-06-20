@@ -7,4 +7,12 @@
     <RootNamespace>_4.ClientView</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\2.API\2.API.csproj" />
+  </ItemGroup>
+
 </Project>
