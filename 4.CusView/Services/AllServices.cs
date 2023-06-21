@@ -1,10 +1,10 @@
 ﻿using _1_API.ViewModel.ChucVu;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using CustomerViews.IServices;
 using System.Text;
+using _4.CusView.IServices;
 
-namespace CustomerViews.Services
+namespace _4.CusView.Services
 {
     public class AllServices : IAllServices
     {

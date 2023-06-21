@@ -1,6 +1,6 @@
 ﻿using _1_API.ViewModel.NhanVien;
 
-namespace CustomerViews.IServices
+namespace _4.CusView.IServices
 {
     public interface IAllServices
     {
