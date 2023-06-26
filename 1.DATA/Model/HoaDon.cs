@@ -21,7 +21,7 @@ namespace _1.DATA.Model
         public string? GhiChu { get; set; }
         public MaGiamGia? maGiamGia { get; set; }
         public KhachHang? khachHang { get; set; }
-        public NhanVien? nhanVien { get; set; }
+        public User? nhanVien { get; set; }
         public virtual ICollection<HoaDonChiTiet> hoadonChitiets { get; set; }
     }
 }

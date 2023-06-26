@@ -12,9 +12,9 @@ namespace _1.DATA.Repositories
 {
     public class AllRepositories<TEntity> : IAllRepositories<TEntity> where TEntity : class
     {
-        private CuahangDbContext _dbContext;
+        private BeeSneakerShopDbContext _dbContext;
         public DbSet<TEntity> Entities { get; set; }
-        public AllRepositories(CuahangDbContext cuahangDbContext)
+        public AllRepositories(BeeSneakerShopDbContext cuahangDbContext)
         {
             this._dbContext = cuahangDbContext;
             this.Entities = _dbContext.Set<TEntity>();
