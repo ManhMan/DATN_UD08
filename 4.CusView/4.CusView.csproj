@@ -8,11 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\2.API\2.API.csproj" />
+    <Compile Remove="app.UseSession%28%29%3b\**" />
+    <Content Remove="app.UseSession%28%29%3b\**" />
+    <EmbeddedResource Remove="app.UseSession%28%29%3b\**" />
+    <None Remove="app.UseSession%28%29%3b\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="app.UseSession%28%29%3b\" />
+    <ProjectReference Include="..\2.API\2.API.csproj" />
   </ItemGroup>
 
   <ItemGroup>

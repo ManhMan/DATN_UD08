@@ -11,9 +11,9 @@ namespace _1_API.Controllers
     [ApiController]
     public class NhanViensController : ControllerBase
     {
-        private IAllRepositories<NhanVien> _repo;
+        private IAllRepositories<User> _repo;
 
-        public NhanViensController(IAllRepositories<NhanVien> repo)
+        public NhanViensController(IAllRepositories<User> repo)
         {
             _repo = repo;
         }
@@ -37,24 +37,23 @@ namespace _1_API.Controllers
 
         [HttpPost]
         [Route("Create")]
-        public async Task<IActionResult> CreateNhanVien(CreateNhanVien cnv)
+        public async Task<IActionResult> CreateNhanVien(CreateUserModel cnv)
         {
             var manv = await _repo.GetAllAsync();
-            NhanVien nv = new NhanVien()
+            User nv = new User()
             {
                 Id = Guid.NewGuid(),
                 Ten = cnv.Ten,
                 MaNV = "NV" + (manv.Count() + 1),
-                IdCvu= cnv.IdCvu,
                 IdGuiBaoCao  = cnv.IdGuiBaoCao,
                 Email = cnv.Email,
-                MatKhau = cnv.MatKhau,
+                PasswordHash = cnv.MatKhau,
                 AnhNhanVien = cnv.AnhNhanVien,
                 GioiTinh = cnv.GioiTinh, 
                 DiaChi = cnv.DiaChi,
                 NgaySinh = cnv.NgaySinh,
                 TrangThai = cnv.TrangThai,
-                Sdt = cnv.Sdt,      
+                PhoneNumber = cnv.Sdt,      
             };
             try
             {
@@ -80,16 +79,15 @@ namespace _1_API.Controllers
             else
             {
                 result.Ten = unv.Ten;
-                result.IdCvu = unv.IdCvu;
                 result.IdGuiBaoCao = unv.IdGuiBaoCao;
                 result.Email = unv.Email;
-                result.MatKhau = unv.MatKhau;
+                result.PasswordHash = unv.MatKhau;
                 result.AnhNhanVien = unv.AnhNhanVien;
                 result.GioiTinh = unv.GioiTinh;
                 result.DiaChi = unv.DiaChi;
                 result.NgaySinh = unv.NgaySinh;
                 result.TrangThai = unv.TrangThai;
-                result.Sdt = unv.Sdt;
+                result.PhoneNumber = unv.Sdt;
                 try
                 {
                     await _repo.UpdateOneAsyn(result);

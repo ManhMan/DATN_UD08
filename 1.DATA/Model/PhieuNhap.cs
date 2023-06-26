@@ -17,7 +17,7 @@ namespace _1.DATA.Model
         public int? TrangThai { get; set; }
         public string? GhiChu { get; set; }
         public NhaCungCap? nhaCungCap { get; set; }
-        public NhanVien? nhanVien { get; set; }
+        public User? nhanVien { get; set; }
         public ICollection<ChiTietPhieuNhap> chiTietPhieuNhaps { get; set; }
     }
 }
