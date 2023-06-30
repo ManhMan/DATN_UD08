@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using _1.DATA.DatabaseContext;
 
@@ -11,9 +12,10 @@ using _1.DATA.DatabaseContext;
 namespace _1.DATA.Migrations
 {
     [DbContext(typeof(BeeSneakerShopDbContext))]
-    partial class BeeSneakerShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230630180706_seeddata")]
+    partial class seeddata
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
