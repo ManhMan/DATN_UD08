@@ -1,6 +1,95 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model _4.CusView.ModelRequest.LoginRequest
+
 @{
+    ViewData["Title"] = "Login";
+    var thongbao = ViewData["thongbao"] as string;
+    //var dangkythanhcong = ViewData["dangkythanhcong"] as string;
+    var e = ViewData["Email"] as String;
+    var p = ViewData["Pass"] as String;
 }
-<h1>aaaaaaaaaaaa</h1>
+<br />
+<br />
+<br />
+<br />
+<div class="main">
+    <div class="main">
+        <div class="container">
+            @*<h1 style="color:black;text-align:center;margin-bottom:20px">@dangkythanhcong</h1>*@
+            <form name="formLogin" method="get" asp-controller="KhachHang" asp-action="CheckDangNhap">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="login" style="text-align : center">
+                    <div class="login-title"><h1>Đăng nhập</h1></div>
+                    <div class="mb-3 row">
+                        <div class="col-sm-2"></div>
+                        <label for="" class="col-sm-2 col-form-label">Nhập tài khoản</label>
+                        <div class="col-sm-5">
+                            @*@if (@e != null)
+                            {
+                                <input asp-for="Email" class="form-control" value="@e" />
+                            }
+                            else
+                            {
+                                <input asp-for="Email" class="form-control" />
+                            }*@
+                            <input asp-for="Email" class="form-control" value="@(e!= null ? e : "")" />
+                            <div style="height:20px">
+                               
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <div class="col-sm-2"></div>
+                        <label for="" class="col-sm-2 col-form-label">Nhập mật khẩu</label>
+                        <div class="col-sm-5">
+                            @*@if (@e != null)
+                            {
+                                <input asp-for="MatKhau" class="form-control" type="password" value="@p" />
+                            }
+                            else
+                            {
+                                <input asp-for="MatKhau" class="form-control" type="password" />
+                            }*@
+                            <input asp-for="MatKhau" class="form-control" type="password" value="@(p!= null ? p : "")" />
+                            <div style="height:20px">
+                                <span asp-validation-for="MatKhau" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <div class="col-sm-2"></div>
+                        <label for="" class="col-sm-2 col-form-label">Ghi nhớ</label>
+                        <div class="col-sm-5">
+                            @if (@e != null)
+                            {
+                                <input asp-for="Remember" type="checkbox" checked="checked" />
+                            }
+                            else
+                            {
+                                <input asp-for="Remember" type="checkbox" />
+                            }
+                            
+                        </div>
+                    </div>
+                    <div style="height:20px">
+                        @if (thongbao != null)
+                        {
+                            <div style="text-align: center; color:red">@thongbao</div>
+                        }
+                    </div>
+                    <button type="submit" class="btn btn-dark">
+                        Đăng nhập hệ thống
+                    </button>
+                    <div class="dangKy">
+                        <a asp-controller="Login" asp-action="DangKy">Bạn chưa có tài khoản? Đăng ký ngay</a>
+                    </div>
+                    <div class="quenMK">
+                        <a asp-controller="Login" asp-action="QuenMK">Bạn quên mật khẩu ?</a>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
