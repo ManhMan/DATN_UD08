@@ -11,6 +11,6 @@ namespace _4.CusView.ModelRequest
         [Required(ErrorMessage = "Vui lòng không để trống")]
         [StringLength(30, MinimumLength = 6, ErrorMessage = "Mật khẩu ít nhất 6 ký tự")]
         public string? MatKhau { get; set; }
-        public bool? Remember { get; set; }
+        public bool Remember { get; set; }
     }
 }
