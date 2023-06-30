@@ -1,5 +1,6 @@
 ﻿using _1.DATA.Configuration;
 using _1.DATA.Model;
+using Data.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -25,7 +26,7 @@ namespace _1.DATA.DatabaseContext
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // sửa cái này
-            base.OnConfiguring(optionsBuilder.UseSqlServer("Server=DESKTOP-T4L1DE8\\SQLEXPRESS;Database=DATN_UD08_Database;Trusted_Connection=True;"));
+            base.OnConfiguring(optionsBuilder.UseSqlServer("Server=HDGNGUYENTIEN\\SQLEXPRESS;Database=DATN_UD08_Database;Trusted_Connection=True;"));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -50,7 +51,7 @@ namespace _1.DATA.DatabaseContext
             modelBuilder.ApplyConfiguration(new ChiTietPhieuNhapConfiguration());
             modelBuilder.ApplyConfiguration(new PhieuNhapConfiguration());
             modelBuilder.ApplyConfiguration(new NhaCungCapConfiguration());
-            //modelBuilder.Seed();
+            modelBuilder.Seed();
         }
         //dbset
         public DbSet<GioHang> GioHangs { get; set; }
