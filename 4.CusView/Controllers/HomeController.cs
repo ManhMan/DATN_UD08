@@ -1,4 +1,7 @@
-﻿using _4.CusView.Models;
+﻿using _4.ClientView.StrConnection;
+using _4.CusView.IServices;
+using _4.CusView.ModelRequest;
+using _4.CusView.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -7,15 +10,17 @@ namespace _4.CusView.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IAllServices _services;
+        public HomeController(ILogger<HomeController> logger, IAllServices services)
         {
             _logger = logger;
+            _services = services;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var lstSp = await _services.GetAllViewSPCT<SanPhamChiTietRequest>(StrConnection.api + "sanphamchitiets/get-view-all");
+            return View(lstSp);
         }
 
         public IActionResult Privacy()

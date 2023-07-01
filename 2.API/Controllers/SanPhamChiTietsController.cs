@@ -33,7 +33,44 @@ namespace _1_API.Controllers
             if (result == null) return Ok("Không có sản phẩm chi tiết");
             return Ok(result);
         }
+        [HttpGet]
+        [Route("get-view-all")]
+        public async Task<IActionResult> GetViewAll()
+        {
+            try
+            {
+                var spcts = await _repo.GetAllAsync();
+                var hinhanhs = await _hinhanhprepo.GetAllAsync();
+                var mausacs = await _mausacrepo.GetAllAsync();
+                if (spcts != null)
+                {
+                    var result = (from a in spcts
+                                  join b in hinhanhs on a.Id equals b.IdSPCT
+                                  join c in mausacs on a.IdMauSac equals c.Id
+                                  select new ViewSanPhamChiTiet
+                                  {
+                                      Id = a.Id,
+                                      GiaBan = a.GiaBan,
+                                      TrangThai = a.TrangThai.ToString(),
+                                      TenMauSac = c.TenMau,
+                                      MaSPChiTiet = a.MaSPChiTiet,
+                                      TenSPChiTiet = a.TenSPChiTiet,
+                                      AnhDaiDien = b.LinkAnh,
+                                  });
+                    return new OkObjectResult(new { message = "Thành công", error = 0,data =result });
+                }
+                else
+                {
+                    return new OkObjectResult(new { message = "Tạm thời không có sản phẩm nào", error = -2 });
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                return new OkObjectResult(new { message = "error Exception", error = -1, data = ex });
+            }
 
+        }
         [HttpGet]
         [Route("GetById/{id}")]
         public async Task<IActionResult> GetSanPhamCtById(Guid id)
@@ -48,7 +85,7 @@ namespace _1_API.Controllers
         public async Task<IActionResult> CreateSanPhamCt(CreateSanphamChitiet csp)
         {
             var ma = await _repo.GetAllAsync();
-            
+
             var listmau = await _mausacrepo.GetAllAsync();
             var tenmau = listmau.ToList().FirstOrDefault(p => p.Id == csp.IdMauSac);
             SanPhamChiTiet spct = new SanPhamChiTiet()

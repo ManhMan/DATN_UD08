@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
 using _4.CusView.IServices;
+using _4.CusView.ModelRequest;
 
 namespace _4.CusView.Services
 {
@@ -27,6 +28,16 @@ namespace _4.CusView.Services
             var response = await httpClient.GetAsync(url);
             string TResponse = await response.Content.ReadAsStringAsync();
             models = JsonConvert.DeserializeObject<List<T>>(TResponse);
+            return models;
+        }
+
+        public async Task<SanPhamChiTietRequest> GetAllViewSPCT<SanPhamChiTietRequest>(string url)
+        {
+            SanPhamChiTietRequest? models;
+            var httpClient = new HttpClient();
+            var response = await httpClient.GetAsync(url);
+            string TResponse = await response.Content.ReadAsStringAsync();
+            models = JsonConvert.DeserializeObject<SanPhamChiTietRequest>(TResponse);
             return models;
         }
 

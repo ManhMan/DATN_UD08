@@ -1,4 +1,5 @@
 ﻿using _1_API.ViewModel.NhanVien;
+using _4.CusView.ModelRequest;
 
 namespace _4.CusView.IServices
 {
@@ -9,5 +10,6 @@ namespace _4.CusView.IServices
         Task<bool> Remove<T>(string urlGetById, string urlRemove, Guid id);
         Task<T> Update<T>(string url, T model, Guid id);
         Task<List<T>> GetAll<T>(string url);
+        Task<SanPhamChiTietRequest> GetAllViewSPCT<SanPhamChiTietRequest>(string url);
     }
 }

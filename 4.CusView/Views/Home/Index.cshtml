@@ -1,4 +1,6 @@
-﻿@{
+﻿@using _4.CusView.ModelRequest;
+@model SanPhamChiTietRequest
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -17,9 +19,9 @@
 </head>
 <body>
     <div class="body">
-            <div class="banner">
-                <img src="~/img/banner.png" alt="" width="100%">
-            </div>
+        <div class="banner">
+            <img src="~/img/banner.png" alt="" width="100%">
+        </div>
         <div class="container">
             <div class="section_service">
 
@@ -57,90 +59,100 @@
                 <h2> <SPan>&diams;</SPan> SẢN PHẨM MỚI <SPan>&diams;</SPan></h2>
                 <P class="title">Các sản phẩm mới tại cửa hàng</P>
                 <div class="row row-cols-1 row-cols-md-4 g-4">
-                    <div class="col">
-                        <div class="card h-70 text-center">
-                            <img src="{{products[0].avatar}}"
-                                 class="card-img img-fluid"
-                                 alt="" />
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <a href="#ChiTietSP/0">{{products[0].name}}</a>
-                                    <p class="card-text">${{products[0].giaBan}}</p>
-                                </h5>
-                                <p class="card-textt"></p>
-                                <div class="d-grid col-10 mx-auto">
-                                    <button class="btn btn-outline-light border-radius-sm"
-                                            type="button">
-                                        <i class="bi bi-cart-dash-fill"></i>
-                                        Thêm vào giỏ hàng
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                    @* <div class="col">
+                    <div class="card h-70 text-center">
+                    <img src="{{products[0].avatar}}"
+                    class="card-img img-fluid"
+                    alt="" />
+                    <div class="card-body">
+                    <h5 class="card-title">
+                    <a href="#ChiTietSP/0">{{products[0].name}}</a>
+                    <p class="card-text">${{products[0].giaBan}}</p>
+                    </h5>
+                    <p class="card-textt"></p>
+                    <div class="d-grid col-10 mx-auto">
+                    <button class="btn btn-outline-light border-radius-sm"
+                    type="button">
+                    <i class="bi bi-cart-dash-fill"></i>
+                    Thêm vào giỏ hàng
+                    </button>
+                    </div>
+                    </div>
+                    </div>
                     </div>
                     <div class="col">
-                        <div class="card h-70 text-center">
-                            <img src="{{products[2].avatar}}"
-                                 class="card-img img-fluid"
-                                 alt="" />
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <a href="#ChiTietSP/2">{{products[2].name}}</a>
-                                    <p class="card-text">${{products[2].giaBan}}</p>
-                                </h5>
-                                <p class="card-textt"></p>
-                                <div class="d-grid col-10 mx-auto">
-                                    <button class="btn btn-outline-light border-radius-sm"
-                                            type="button">
-                                        <i class="bi bi-cart-dash-fill"></i>
-                                        Thêm vào giỏ hàng
-                                    </button>
+                    <div class="card h-70 text-center">
+                    <img src="{{products[2].avatar}}"
+                    class="card-img img-fluid"
+                    alt="" />
+                    <div class="card-body">
+                    <h5 class="card-title">
+                    <a href="#ChiTietSP/2">{{products[2].name}}</a>
+                    <p class="card-text">${{products[2].giaBan}}</p>
+                    </h5>
+                    <p class="card-textt"></p>
+                    <div class="d-grid col-10 mx-auto">
+                    <button class="btn btn-outline-light border-radius-sm"
+                    type="button">
+                    <i class="bi bi-cart-dash-fill"></i>
+                    Thêm vào giỏ hàng
+                    </button>
+                    </div>
+                    </div>
+                    </div>
+                    </div>*@
+
+                    @if (Model.error == 0)
+                    {
+                        @foreach (var item in Model.data)
+                        {
+                              <div class="col">
+                                <div class="card h-70 text-center">
+                                    <img src="@item.AnhDaiDien"
+                                         class="card-img img-fluid"
+                                         alt="Ảnh sản phẩm" />
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            <a href="#ChiTietSP/1">@item.TenSPChiTiet [@item.TenMauSac]</a>
+                                            <p class="card-text">$@item.GiaBan</p>
+                                        </h5>
+                                        <p class="card-textt"></p>
+                                        <div class="d-grid col-10 mx-auto">
+                                            <button class="btn btn-outline-light border-radius-sm"
+                                                    type="button">
+                                                <i class="bi bi-cart-dash-fill"></i>
+                                                Thêm vào giỏ hàng
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        }
+                    }
+
+
+
+                    @*                    <div class="col">
+                    <div class="card h-70 text-center">
+                    <img src="{{products[3].avatar}}"
+                    class="card-img img-fluid"
+                    alt="" />
+                    <div class="card-body">
+                    <h5 class="card-title">
+                    <a href="#ChiTietSP/3">{{products[3].name}}</a>
+                    <p class="card-text">${{products[3].giaBan}}</p>
+                    </h5>
+                    <p class="card-textt"></p>
+                    <div class="d-grid col-10 mx-auto">
+                    <button class="btn btn-outline-light border-radius-sm"
+                    type="button">
+                    <i class="bi bi-cart-dash-fill"></i>
+                    Thêm vào giỏ hàng
+                    </button>
                     </div>
-                    <div class="col">
-                        <div class="card h-70 text-center">
-                            <img src="{{products[1].avatar}}"
-                                 class="card-img img-fluid"
-                                 alt="" />
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <a href="#ChiTietSP/1">{{products[1].name}}</a>
-                                    <p class="card-text">${{products[1].giaBan}}</p>
-                                </h5>
-                                <p class="card-textt"></p>
-                                <div class="d-grid col-10 mx-auto">
-                                    <button class="btn btn-outline-light border-radius-sm"
-                                            type="button">
-                                        <i class="bi bi-cart-dash-fill"></i>
-                                        Thêm vào giỏ hàng
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                    <div class="col">
-                        <div class="card h-70 text-center">
-                            <img src="{{products[3].avatar}}"
-                                 class="card-img img-fluid"
-                                 alt="" />
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <a href="#ChiTietSP/3">{{products[3].name}}</a>
-                                    <p class="card-text">${{products[3].giaBan}}</p>
-                                </h5>
-                                <p class="card-textt"></p>
-                                <div class="d-grid col-10 mx-auto">
-                                    <button class="btn btn-outline-light border-radius-sm"
-                                            type="button">
-                                        <i class="bi bi-cart-dash-fill"></i>
-                                        Thêm vào giỏ hàng
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
                     </div>
+                    </div>*@
                 </div>
             </div>
             <div class="more">
