@@ -4,6 +4,8 @@ using _1.DATA.IRepositories;
 using _1.DATA.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using _1_API.ViewModel.SizeSanPham;
+using System.Collections.Generic;
 
 namespace _1_API.Controllers
 {
@@ -12,17 +14,23 @@ namespace _1_API.Controllers
     public class SanphamChitietsController : ControllerBase
     {
         private IAllRepositories<SanPhamChiTiet> _repo;
+        private IAllRepositories<SanPham> _sp;
         private IAllRepositories<TheLoaiSanPham> _theloaisprepo;
         private IAllRepositories<HinhAnh> _hinhanhprepo;
         private IAllRepositories<MauSac> _mausacrepo;
+        private IAllRepositories<Size> _size;
+        private IAllRepositories<SizeSanPham> _sizesanpham;
 
 
-        public SanphamChitietsController(IAllRepositories<SanPhamChiTiet> repo, IAllRepositories<TheLoaiSanPham> theloaisprepo, IAllRepositories<HinhAnh> hinhanhprepo, IAllRepositories<MauSac> mausacrepo)
+        public SanphamChitietsController(IAllRepositories<SanPhamChiTiet> repo, IAllRepositories<TheLoaiSanPham> theloaisprepo, IAllRepositories<HinhAnh> hinhanhprepo, IAllRepositories<MauSac> mausacrepo, IAllRepositories<Size> size, IAllRepositories<SizeSanPham> sizesanpham, IAllRepositories<SanPham> sp)
         {
             _repo = repo;
             _theloaisprepo = theloaisprepo;
             _hinhanhprepo = hinhanhprepo;
             _mausacrepo = mausacrepo;
+            _size = size;
+            _sizesanpham = sizesanpham;
+            _sp = sp;
         }
 
         [HttpGet]
@@ -33,7 +41,98 @@ namespace _1_API.Controllers
             if (result == null) return Ok("Không có sản phẩm chi tiết");
             return Ok(result);
         }
+        [HttpGet]
+        [Route("get-view-all")]
+        public async Task<IActionResult> GetViewAll()
+        {
+            try
+            {
+                var spcts = await _repo.GetAllAsync();
+                var hinhanhs = await _hinhanhprepo.GetAllAsync();
+                var mausacs = await _mausacrepo.GetAllAsync();
+                if (spcts != null)
+                {
+                    var result = (from a in spcts
+                                  join b in hinhanhs on a.Id equals b.IdSPCT
+                                  join c in mausacs on a.IdMauSac equals c.Id
+                                  select new ViewSanPhamChiTiet
+                                  {
+                                      Id = a.Id,
+                                      GiaBan = a.GiaBan,
+                                      TrangThai = a.TrangThai.ToString(),
+                                      TenMauSac = c.TenMau,
+                                      MaSPChiTiet = a.MaSPChiTiet,
+                                      TenSPChiTiet = a.TenSPChiTiet,
+                                      AnhDaiDien = b.LinkAnh,
+                                  });
+                    return new OkObjectResult(new { message = "Thành công", error = 0, data = result });
+                }
+                else
+                {
+                    return new OkObjectResult(new { message = "Tạm thời không có sản phẩm nào", error = -2 });
+                }
 
+            }
+            catch (Exception ex)
+            {
+                return new OkObjectResult(new { message = "error Exception", error = -1, data = ex });
+            }
+
+        }
+        [HttpGet]
+        [Route("GetByIdView/{id}")]
+        public async Task<IActionResult> GetByIdView(Guid id)
+        {
+            try
+            {
+                var spct = await _repo.GetByIdAsync(id);
+                if (spct != null)
+                {
+                    var hinhanhs = await _hinhanhprepo.GetAllAsync();
+                    var mausacs = await _mausacrepo.GetAllAsync();
+                    var sizes = await _size.GetAllAsync();
+                    var sizesanphams = await _sizesanpham.GetAllAsync();
+                    var sps = await _sp.GetAllAsync();
+                    var tenSP = sps.FirstOrDefault(x => x.Id == spct.IdSP).Ten;
+                    var mausacSP = mausacs.FirstOrDefault(x => x.Id == spct.IdMauSac).TenMau;
+                    var listsize = (from a in sizesanphams.Where(x => x.IdSanPhamChiTiet == id)
+                                    join c in sizes on a.IdSize equals c.Id
+                                    where a.SoLuong > 0
+                                    orderby c.KichCo ascending
+                                    select new SizeSanPhamModel()
+                                    {
+                                        Id = a.IdSize,
+                                        Size = c.KichCo.ToString(),
+                                        SoLuong = a.SoLuong
+                                    }).ToList();
+                    var listImage = (from a in hinhanhs.Where(x => x.IdSPCT == id)
+                                     where a.isDelete == false
+                                     select new ListImage()
+                                     {
+                                         linkAnh = a.LinkAnh
+                                     }).ToList();
+                    var result = new ViewChiTietSanPhamChiTiet() { 
+                        idsqct = id,
+                        giaban = spct.GiaBan,
+                        ten = tenSP == null ? null: tenSP,
+                        mausac = mausacSP == null ? null : mausacSP,
+                        lstsize = listsize,
+                        lstanh = listImage
+                    };
+
+                    return new OkObjectResult(new { message = "Thành công", error = 0, data = result });
+                }
+                else
+                {
+                    return new OkObjectResult(new { message = "Không tìm được thông tin sản phẩm", error = -2 });
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return new OkObjectResult(new { message = "Có lỗi sảy ra! Hãy thử lại sau", error = -1, data = ex });
+            }
+        }
         [HttpGet]
         [Route("GetById/{id}")]
         public async Task<IActionResult> GetSanPhamCtById(Guid id)
@@ -48,7 +147,7 @@ namespace _1_API.Controllers
         public async Task<IActionResult> CreateSanPhamCt(CreateSanphamChitiet csp)
         {
             var ma = await _repo.GetAllAsync();
-            
+
             var listmau = await _mausacrepo.GetAllAsync();
             var tenmau = listmau.ToList().FirstOrDefault(p => p.Id == csp.IdMauSac);
             SanPhamChiTiet spct = new SanPhamChiTiet()
