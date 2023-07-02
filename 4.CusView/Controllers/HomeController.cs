@@ -1,4 +1,5 @@
-﻿using _4.ClientView.StrConnection;
+﻿using _1_API.ViewModel.SanphamChitiet;
+using _4.ClientView.StrConnection;
 using _4.CusView.IServices;
 using _4.CusView.ModelRequest;
 using _4.CusView.Models;
@@ -22,7 +23,11 @@ namespace _4.CusView.Controllers
             var lstSp = await _services.GetAllViewSPCT<SanPhamChiTietRequest>(StrConnection.api + "sanphamchitiets/get-view-all");
             return View(lstSp);
         }
-
+        public async Task<IActionResult> ChiTietSanPham(Guid id)
+        {
+            var spct = await _services.GetById<ChiTietSanPhamChiTietRequest>(StrConnection.api + "sanphamchitiets/GetByIdView/", id);
+            return View(spct);
+        }
         public IActionResult Privacy()
         {
             return View();

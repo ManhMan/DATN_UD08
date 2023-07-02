@@ -1,4 +1,6 @@
-﻿namespace _4.CusView.ModelRequest
+﻿using _1_API.ViewModel.SanphamChitiet;
+
+namespace _4.CusView.ModelRequest
 {
     public class SanPhamChiTietRequest
     {
@@ -7,14 +9,10 @@
         public List<ViewSanPhamChiTiet>? data { get; set; }
 
     }
-    public class ViewSanPhamChiTiet
+    public class ChiTietSanPhamChiTietRequest
     {
-        public Guid Id { get; set; }
-        public decimal? GiaBan { get; set; }
-        public string? TrangThai { get; set; }
-        public string? TenMauSac { get; set; }
-        public string? MaSPChiTiet { get; set; }
-        public string? TenSPChiTiet { get; set; }
-        public string? AnhDaiDien { get; set; }
+        public string? message { get; set; }
+        public int error { get; set; }
+        public ViewChiTietSanPhamChiTiet? data { get; set; }
     }
 }
