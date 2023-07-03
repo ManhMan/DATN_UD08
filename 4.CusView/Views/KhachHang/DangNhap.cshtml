@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Login";
     var thongbao = ViewData["thongbao"] as string;
-    //var dangkythanhcong = ViewData["dangkythanhcong"] as string;
+    var dangkythanhcong = ViewData["dangkythanhcong"] as string;
     var e = ViewData["Email"] as String;
     var p = ViewData["Pass"] as String;
 }
@@ -81,10 +81,22 @@
                         Đăng nhập hệ thống
                     </button>
                     <div class="dangKy">
-                        <a asp-controller="Login" asp-action="DangKy">Bạn chưa có tài khoản? Đăng ký ngay</a>
+                        <a asp-controller="KhachHang" asp-action="DangKy">Bạn chưa có tài khoản? Đăng ký ngay</a>
                     </div>
                     <div class="quenMK">
                         <a asp-controller="Login" asp-action="QuenMK">Bạn quên mật khẩu ?</a>
+                    </div>
+                    <div class="quenMK">
+                        <a asp-controller="KhachHang" asp-action="UpdateKH">Thay đổi thông tin</a>
+                    </div>
+                    <div class="quenMK">
+                        <a asp-controller="KhachHang" asp-action="ThongTinKhachHang">Thông tin khách hàng</a>
+                    </div>
+                    <div class="quenMK">
+                        <a asp-controller="KhachHang" asp-action="DoiMK">Thay đổi mật khẩu</a>
+                    </div>
+                    <div class="quenMK">
+                        <a asp-controller="KhachHang" asp-action="QuenMK">Quên mật khẩu</a>
                     </div>
                 </div>
 
