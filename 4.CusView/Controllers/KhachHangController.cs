@@ -1,10 +1,14 @@
 ﻿using _1.DATA.Model;
+using _1_API.ViewModel.KhachHang;
 using _4.ClientView.StrConnection;
 using _4.CusView.IServices;
 using _4.CusView.ModelRequest;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Mail;
+using System.Net;
 using System.Text;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace _4.CusView.Controllers
 {
@@ -26,7 +30,7 @@ namespace _4.CusView.Controllers
             if (Request.Cookies["Email"] != null)
             {
                 ViewData["Email"] = Request.Cookies["Email"];
-                ViewData["Pass"] = Request.Cookies["Pass"];          
+                ViewData["Pass"] = Request.Cookies["Pass"];
                 return View();
             }
             return View();
@@ -77,7 +81,7 @@ namespace _4.CusView.Controllers
                                 return RedirectToAction("Index", "Home");
                             }
                             else
-                            {                              
+                            {
                                 Response.Cookies.Delete("Email");
                                 Response.Cookies.Delete("Pass");
                                 return RedirectToAction("Index", "Home");
@@ -95,6 +99,66 @@ namespace _4.CusView.Controllers
                 }
             }
             return View("DangNhap");
+        }
+
+        public IActionResult DangXuat()
+        {
+            HttpContext.Session.Remove("idkh");
+            HttpContext.Session.Remove("ten");
+            HttpContext.Session.Remove("idgh");
+            return RedirectToAction("Index", "Home");
+        }
+
+        public IActionResult DangKy()
+        {
+            return View();
+        }
+        public async Task<IActionResult> CheckDangKy(DangKyRequestModel request)
+        {
+            if (ModelState.IsValid)
+            {
+                bool check = await CheckEmail_SDT(request.Email, request.Sdt);
+                if (check == false)
+                {
+                    return View("DangKy"); 
+                }
+                else
+                {
+                    var success = await _services.Add<DangKyRequestModel>(StrConnection.api + "KhachHangs/", request);
+                    if (success != null)
+                    {
+                        ViewData["dangkythanhcong"] = "Đăng ký thành công!!!";
+                        return View("DangNhap");
+                    }
+                    else
+                    {
+                        return View("DangKy");
+                    }
+                }
+            }
+            return View("DangKy");
+        }
+        public async Task<bool> CheckEmail_SDT(string email, string sdt)
+        {
+            var lstKH = await _services.GetAll<KhachHang>(StrConnection.api + "KhachHangs/Get-All");
+            var checkEmail = lstKH.FirstOrDefault(p=>p.Email == email);
+            var checkSdt = lstKH.FirstOrDefault(p=>p.Sdt == sdt);
+            //if (checkEmail != null && checkSdt!= null) 
+            //{
+            //    ViewData["thongbaoEmail"] = "Email đã tồn tại, vui lòng sử dụng Email khác!";
+            //    ViewData["thongbaoSdt"] = "Số điện thoại đã tồn tại, vui lòng sử dụng SDDT khác!";
+            //    return false;
+            //}
+            if (checkEmail!=null)
+            {
+				ViewData["thongbaoEmail"] = "Email đã tồn tại, vui lòng sử dụng Email khác!";
+				return false;
+			}
+            if (checkSdt!=null) {
+				ViewData["thongbaoSdt"] = "Số điện thoại đã tồn tại, vui lòng sử dụng SDDT khác!";
+				return false;
+			}
+            return true;
         }
         public string ParseLai(string encodedData)
         {
@@ -121,6 +185,156 @@ namespace _4.CusView.Controllers
                 throw new Exception("Error in base64Encode" + ex.Message);
             }
         }
+		public async Task<IActionResult> UpdateKH()
+		{
+			var id = HttpContext.Session.GetString("idkh");
+			Guid guidID = Guid.Parse(id);
+			var kh = await _services.GetById<KhachHang>(StrConnection.api + "KhachHangs/GetById/", guidID);
+            UpdateKhachHang view = new UpdateKhachHang()
+			{
+				Id = kh.Id,
+				Ten = kh.Ten,
+				DiaChi = kh.DiaChi,
+				GioiTinh = kh.GioiTinh,
+				Sdt = kh.Sdt,
+				NgaySinh = kh.NgaySinh
+			};
+			return View(view);
+		}
 
-    }	
+		public async Task<IActionResult> Updateing(UpdateKhachHang request)
+		{
+			var id = HttpContext.Session.GetString("idkh");
+			Guid guidID = Guid.Parse(id);
+            var kh = await _services.GetById<KhachHang>(StrConnection.api + "KhachHangs/GetById/", guidID);
+            UpdateKhachHang up = new UpdateKhachHang()
+			{
+				Id = request.Id,
+				Ten = request.Ten,
+				DiaChi = request.DiaChi,
+				Sdt = request.Sdt,
+				NgaySinh = request.NgaySinh,
+				GioiTinh = request.GioiTinh,
+                Email = kh.Email,
+                MatKhau = kh.MatKhau,
+			};
+			await _services.Update<UpdateKhachHang>(StrConnection.api +"KhachHangs/Update/", up, guidID);            
+			return View("ThongTinKhachHang");
+
+		}
+        public async Task<IActionResult> ThongTinKhachHang()
+        {
+            var id = HttpContext.Session.GetString("idkh");
+            Guid guidID = Guid.Parse(id);
+            var kh = await _services.GetById<KhachHang>(StrConnection.api + "KhachHangs/GetById/", guidID);
+            ViewKhachHang view = new ViewKhachHang()
+            {
+                Id = kh.Id,
+                Ten = kh.Ten,
+                DiaChi = kh.DiaChi,
+                Email = kh.Email,
+                GioiTinh = kh.GioiTinh,
+                Sdt = kh.Sdt,
+                NgaySinh = kh.NgaySinh
+            };
+            return View(view);
+        }
+
+        public IActionResult DoiMK()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> ThayDoiMK(ThayDoiMKRequest request)
+        {
+            if (ModelState.IsValid)
+            {
+                if (string.IsNullOrEmpty(request.Email) || string.IsNullOrEmpty(request.Sdt) || string.IsNullOrEmpty(request.MatKhau))
+                {
+                    ViewData["check"] = "Email hoặc số điện thoại không được để trống";
+                    return View("DoiMK");
+                }
+
+                var lstKH = await _services.GetAll<KhachHang>(StrConnection.api + "KhachHangs/Get-All");
+                var tk = lstKH.FirstOrDefault(p => p.Email == request.Email && p.Sdt == request.Sdt && p.MatKhau == request.MatKhau);
+                if (request.MatKhauMoi == request.NhapLaiMkm)
+                {
+                    if (tk != null)
+                    {
+                        tk.MatKhau = request.MatKhauMoi;
+
+                        await _services.Update<KhachHang>(StrConnection.api + "KhachHangs/Update/", tk, tk.Id);
+                        HttpContext.Session.Remove("idkh");
+                        HttpContext.Session.Remove("ten");
+                        HttpContext.Session.Remove("idgh");
+                        ViewData["thanhcong"] = "Thay đổi mật khẩu thành công";
+                        return View("DangNhap");
+                    }
+                    else
+                    {
+                        ViewData["loidmk"] = "Thông tin tài khoản không chính xác";
+                        return View("DoiMK"); ;
+                    }
+                }
+                else
+                {
+                    ViewData["loidmk"] = "Mật khẩu mới không trùng khớp, hãy nhập lại";
+                    return View("DoiMK");
+                }
+            }
+            else
+            {
+                return View("DoiMK");
+            }
+        }
+
+        public IActionResult QuenMK()
+        {
+            return View();
+        }
+        public async Task<IActionResult> CheckQuenMK(QuenMK request)
+        {
+            if (string.IsNullOrEmpty(request.Email) || string.IsNullOrEmpty(request.SDT))
+            {
+                ViewData["check"] = "Email hoặc số điện thoại không được để trống";
+                return View("QuenMK");
+            }
+            var lstKH = await _services.GetAll<KhachHang>(StrConnection.api + "KhachHangs/Get-All");
+            var tk = lstKH.FirstOrDefault(p => p.Email == request.Email && p.Sdt == request.SDT);
+            if (tk != null)
+            {
+                var fromAddress = new MailAddress("nguyenhuukhoa5462@gmail.com");
+                var toAddress = new MailAddress(tk.Email);
+                const string fromPassword = "mqanjbksawuxofko";
+                string subject = "Quên mật khẩu";
+                string body = "Mật khẩu của bạn là: " + tk.MatKhau;
+
+                var smtp = new SmtpClient
+                {
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+                };
+                using (var message = new MailMessage(fromAddress, toAddress)
+                {
+                    Subject = subject,
+                    Body = body
+                })
+                {
+                    smtp.Send(message);
+                }
+                ViewData["dangkythanhcong"] = "Lấy lại mật khẩu thành công. Vui lòng Kiểm tra email !";
+                return View("DangNhap");
+            }
+            else
+            {
+                ViewData["check"] = "Email hoặc số điện thoại không đúng";
+                return View("QuenMK");
+            }
+        }
+
+    }
 }
