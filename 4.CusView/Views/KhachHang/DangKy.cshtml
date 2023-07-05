@@ -4,106 +4,122 @@
 	ViewData["Title"] = "DangKy";
 	var thongbaoEmail = ViewData["thongbaoEmail"] as String;
 	var thongbaoSdt = ViewData["thongbaoSdt"] as String;
-	}
-	<h1>DangKy</h1>
+	var guiEmail = ViewData["guiEmail"] as String;
+}
+<h1>DangKy</h1>
 
-	<h4>DangKyRequestModel</h4>
-	<hr />
+<h4>DangKyRequestModel</h4>
+<hr />
+<div class="main">
 	<div class="main">
-		<div class="main">
-			<div class="container">
-				<form name="formLogin" method="get" asp-controller="KhachHang" asp-action="CheckDangKy">
-					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-					<div class="login" style="text-align : center">
-						<div class="login-title"><h1>Đăng ký tài khoản</h1></div>
-						<div class="mb-3 row">
-							<div class="col-sm-2"></div>
-							<label asp-for="Ten" class="col-sm-2 col-form-label">Họ và tên</label>
-							<div class="col-sm-5">
-								<input asp-for="Ten" class="form-control" />
-								<div style="height:20px">
-									<span asp-validation-for="Ten" class="text-danger"></span>
-								</div>
+		<div class="container">
+			<form name="formLogin" method="get" asp-controller="KhachHang" asp-action="CheckDangKy">
+				<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+				<div class="login" style="text-align : center">
+					<div class="login-title"><h1>Đăng ký tài khoản</h1></div>
+					<div class="mb-3 row">
+						<div class="col-sm-2"></div>
+						<label asp-for="Ten" class="col-sm-2 col-form-label">Họ và tên</label>
+						<div class="col-sm-5">
+							<input asp-for="Ten" class="form-control" />
+							<div style="height:20px">
+								<span asp-validation-for="Ten" class="text-danger"></span>
 							</div>
 						</div>
-						<div class="mb-3 row">
-							<div class="col-sm-2"></div>
-							<label asp-for="Email" class="col-sm-2 col-form-label">Email</label>
-							<div class="col-sm-5">
-								<input asp-for="Email" class="form-control" />
-								<div style="height:20px">
-									<span asp-validation-for="Email" class="text-danger"></span>
-								</div>
-								@if (thongbaoEmail != null)
-								{
-									<span class="text-danger">@thongbaoEmail</span>
-								}
+					</div>
+					<div class="mb-3 row">
+						<div class="col-sm-2"></div>
+						<label asp-for="Email" class="col-sm-2 col-form-label">Email</label>
+						<div class="col-sm-5">
+							<input asp-for="Email" class="form-control" />
+							<div style="height:20px">
+								<span asp-validation-for="Email" class="text-danger"></span>
+							</div>
+							@if (thongbaoEmail != null)
+							{
+								<span class="text-danger">@thongbaoEmail</span>
+							}
+						</div>
+					</div>
+					<div class="mb-3 row">
+						<div class="col-sm-2"></div>
+						<label asp-for="MatKhau" class="col-sm-2 col-form-label">Mật khẩu</label>
+						<div class="col-sm-5">
+							<input asp-for="MatKhau" class="form-control" type="password" />
+							<div style="height:20px">
+								<span asp-validation-for="MatKhau" class="text-danger"></span>
 							</div>
 						</div>
-						<div class="mb-3 row">
-							<div class="col-sm-2"></div>
-							<label asp-for="MatKhau" class="col-sm-2 col-form-label">Mật khẩu</label>
-							<div class="col-sm-5">
-								<input asp-for="MatKhau" class="form-control" type="password" />
-								<div style="height:20px">
-									<span asp-validation-for="MatKhau" class="text-danger"></span>
-								</div>
+					</div>
+					<div class="mb-3 row">
+						<div class="col-sm-2"></div>
+						<label asp-for="DiaChi" class="col-sm-2 col-form-label">Địa chỉ</label>
+						<div class="col-sm-5">
+							<input asp-for="DiaChi" class="form-control" />
+							<div style="height:20px">
+								<span asp-validation-for="DiaChi" class="text-danger"></span>
 							</div>
 						</div>
-						<div class="mb-3 row">
-							<div class="col-sm-2"></div>
-							<label asp-for="DiaChi" class="col-sm-2 col-form-label">Địa chỉ</label>
-							<div class="col-sm-5">
-								<input asp-for="DiaChi" class="form-control" />
-								<div style="height:20px">
-									<span asp-validation-for="DiaChi" class="text-danger"></span>
-								</div>
+					</div>
+					<div class="mb-3 row">
+						<div class="col-sm-2"></div>
+						<label asp-for="GioiTinh" class="col-sm-2 col-form-label">Giới tính</label>
+						<div class="col-sm-5">
+							<select asp-for="GioiTinh" class="form-select">
+								<option value="true" selected>Nam</option>
+								<option value="false">Nữ</option>
+							</select>
+							<div style="height:20px">
+								<span asp-validation-for="GioiTinh" class="text-danger"></span>
 							</div>
 						</div>
-						<div class="mb-3 row">
-							<div class="col-sm-2"></div>
-							<label asp-for="GioiTinh" class="col-sm-2 col-form-label">Giới tính</label>
-							<div class="col-sm-5">
-								<select asp-for="GioiTinh" class="form-select">
-									<option value="true" selected>Nam</option>
-									<option value="false">Nữ</option>
-								</select>
-								<div style="height:20px">
-									<span asp-validation-for="GioiTinh" class="text-danger"></span>
-								</div>
-							</div>
 
+					</div>
+					<div class="mb-3 row">
+						<div class="col-sm-2"></div>
+						<label asp-for="Sdt" class="col-sm-2 col-form-label">Số điện thoại</label>
+						<div class="col-sm-5">
+							<input asp-for="Sdt" class="form-control" />
+							<div style="height:20px">
+								<span asp-validation-for="Sdt" class="text-danger"></span>
+							</div>
+							@if (thongbaoSdt != null)
+							{
+								<span class="text-danger">@thongbaoSdt</span>
+							}
 						</div>
-						<div class="mb-3 row">
-							<div class="col-sm-2"></div>
-							<label asp-for="Sdt" class="col-sm-2 col-form-label">Số điện thoại</label>
-							<div class="col-sm-5">
-								<input asp-for="Sdt" class="form-control" />
-								<div style="height:20px">
-									<span asp-validation-for="Sdt" class="text-danger"></span>
-								</div>
-								@if (thongbaoSdt != null)
-								{
-									<span class="text-danger">@thongbaoSdt</span>
-								}
+					</div>
+					<div class="mb-3 row">
+						<div class="col-sm-2"></div>
+						<label asp-for="NgaySinh" class="col-sm-2 col-form-label">Ngày sinh</label>
+						<div class="col-sm-5">
+							<input asp-for="NgaySinh" type="date" class="form-control" />
+							<div style="height:20px">
+								<span asp-validation-for="NgaySinh" class="text-danger"></span>
 							</div>
 						</div>
-						<div class="mb-3 row">
-							<div class="col-sm-2"></div>
-							<label asp-for="NgaySinh" class="col-sm-2 col-form-label">Ngày sinh</label>
-							<div class="col-sm-5">
-								<input asp-for="NgaySinh" type="date" class="form-control" />
-								<div style="height:20px">
-									<span asp-validation-for="NgaySinh" class="text-danger"></span>
-								</div>
+					</div>
+					<div class="mb-3 row">
+						<div class="col-sm-2"></div>
+						<label asp-for="NgaySinh" class="col-sm-2 col-form-label">Mã xác nhận</label>
+						<div class="col-sm-5">
+							<input asp-for="MaXacNhan" type="text" class="form-control" />
+							<div style="height:20px">
+								<span asp-validation-for="MaXacNhan" class="text-danger"></span>
 							</div>
+						</div>
+						<div>
+							@if (guiEmail != null)
+							{
+								<span class="text-danger"> @guiEmail</span>
+							}
 						</div>
 						@*<div style="height:20px">
-					@if (thongbao != null)
-					{
-					<div style="text-align: center; color:red">@thongbao</div>
-					}
-					</div>*@
+						@if (thongbao != null)
+						{
+						<div style="text-align: center; color:red">@thongbao</div>
+						}
+						</div>*@
 						<button type="submit" class="btn btn-dark">
 							Đăng Ký
 						</button>
@@ -114,18 +130,24 @@
 							<a asp-controller="Login" asp-action="QuenMK">Bạn quên mật khẩu ?</a>
 						</div>
 					</div>
-
-				</form>
-			</div>
+				</div>
+				<div>
+					<button asp-controller="KhachHang" asp-action="LayMaXacNhan">Lấy mã xác nhận</button>
+				</div>
+			</form>
+			@*<button asp-controller="KhachHang" asp-action="LayMaXacNhan">Lấy mã xác nhận</button>*@
 		</div>
 	</div>
 
-	<div>
-		<a asp-action="Index">Back to List</a>
-	</div>
+</div>
 
-	@section Scripts {
-		@{
-			await Html.RenderPartialAsync("_ValidationScriptsPartial");
-		}
+
+<div>
+	<a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
 	}
