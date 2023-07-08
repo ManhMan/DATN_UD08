@@ -15,12 +15,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Views\Shared\Components\BagCart\Default.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\2.API\2.API.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="NToastNotify" Version="8.0.0" />
   </ItemGroup>
 
 </Project>

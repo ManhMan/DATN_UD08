@@ -11,7 +11,7 @@ builder.Services.AddSession(p => {
     p.IdleTimeout = TimeSpan.FromMinutes(30);
 });
 builder.Services.AddControllersWithViews();
-builder.Services.AddMvc();
+builder.Services.AddMvc().AddNToastNotifyToastr();
 builder.Services.AddScoped<IAllServices, AllServices>();
 
 var app = builder.Build();

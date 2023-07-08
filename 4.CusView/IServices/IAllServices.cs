@@ -11,5 +11,6 @@ namespace _4.CusView.IServices
         Task<T> Update<T>(string url, T model, Guid id);
         Task<List<T>> GetAll<T>(string url);
         Task<SanPhamChiTietRequest> GetAllViewSPCT<SanPhamChiTietRequest>(string url);
+        Task<CartRequest> GetAllViewCart<CartRequest>(string url);
     }
 }

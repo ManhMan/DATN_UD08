@@ -55,6 +55,7 @@ namespace _1_API.Controllers
                     var result = (from a in spcts
                                   join b in hinhanhs on a.Id equals b.IdSPCT
                                   join c in mausacs on a.IdMauSac equals c.Id
+                                  where b.TrangThai == true
                                   select new ViewSanPhamChiTiet
                                   {
                                       Id = a.Id,
@@ -104,20 +105,21 @@ namespace _1_API.Controllers
                                         Id = a.IdSize,
                                         Size = c.KichCo.ToString(),
                                         SoLuong = a.SoLuong
-                                    }).ToList();
+                                    });
                     var listImage = (from a in hinhanhs.Where(x => x.IdSPCT == id)
                                      where a.isDelete == false
+                                     orderby a.TrangThai ascending
                                      select new ListImage()
                                      {
                                          linkAnh = a.LinkAnh
-                                     }).ToList();
+                                     });
                     var result = new ViewChiTietSanPhamChiTiet() { 
                         idsqct = id,
                         giaban = spct.GiaBan,
                         ten = tenSP == null ? null: tenSP,
                         mausac = mausacSP == null ? null : mausacSP,
-                        lstsize = listsize,
-                        lstanh = listImage
+                        lstsize = listsize.ToList(),
+                        lstanh = listImage.ToList()
                     };
 
                     return new OkObjectResult(new { message = "Thành công", error = 0, data = result });
