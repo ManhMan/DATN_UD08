@@ -5,51 +5,98 @@
 *@
 @{
 }
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - _4.CusView</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/_4.CusView.styles.css" asp-append-version="true" />
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
-</head>
-<body>
+@if (Model.error == 0)
+{
     <div class="container">
         <div class="row">
             <div class="col-5">
                 <div class="view-image-product">
-                    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
-                            @if (Model.data.lstanh.Any())
+                            @if (Model.data.lstanh.Count() > 0)
                             {
-                                @foreach (var item in Model.data.lstanh)
+                                @for (int i = 0; i < Model.data.lstanh.Count(); i++)
                                 {
-                                    <div class="carousel-item active">
-                                        <img src="~/img/PRODUCT/@item.linkAnh" class="d-block w-100" alt="...">
-                                    </div>
+                                    if (i == 0)
+                                    {
+                                        <div class="carousel-item active">
+                                            <img src="~/img/PRODUCT/@Model.data.lstanh[i].linkAnh" class="d-block w-100" alt="...">
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="carousel-item">
+                                            <img src="~/img/PRODUCT/@Model.data.lstanh[i].linkAnh" class="d-block w-100" alt="...">
+                                        </div>
+                                    }
+
+
                                 }
                             }
-                            else
-                            {
-                                <div class="carousel-item active">
-                                    <img src="~/img/PRODUCT/26.jpg" class="d-block w-100" alt="null">
-                                </div>
+
                             }
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true" style="background-color:black"></span>
                             <span class="visually-hidden">Previous</span>
                         </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true" style="background-color:black"></span>
                             <span class="visually-hidden">Next</span>
                         </button>
                     </div>
                 </div>
+                @*   <div class="view-image-product">
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+            @if (Model.data.lstanh.Count() > 0)
+            {
+            @for (int i = 0; i < Model.data.lstanh.Count(); i++)
+            {
+            if (i == 0)
+            {
+            <div class="carousel-item active">
+            <img src="~/img/PRODUCT/@Model.data.lstanh[i].linkAnh" class="d-block w-100" alt="...">
+            </div>
+            }
+            else
+            {
+            <div class="carousel-item">
+            <img src="~/img/PRODUCT/@Model.data.lstanh[i].linkAnh" class="d-block w-100" alt="...">
+            </div>
+            }
+
+
+            }
+            }
+
+            }
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true" style="background-color:black"></span>
+            <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true" style="background-color:black"></span>
+            <span class="visually-hidden">Next</span>
+            </button>
+            </div>
+            @*                @if (Model.data.lstanh.Any())
+            {
+            @foreach (var item in Model.data.lstanh)
+            {
+            <div class="img-thumbnail">
+            <img src="~/img/PRODUCT/@item.linkAnh" class="d-block w-100 h-100" alt="...">
+            </div>
+            }
+            }
+            else
+            {
+            // ảnh rỗng
+            <div class="img-thumbnail">
+            <img src="~/img/PRODUCT/26.jpg" class="d-block w-100" alt="null">
+            </div>
+            }*@
             </div>
             <div class="col-7">
                 <div class="view-properties-product">
@@ -61,33 +108,33 @@
                             <span style="color: #e0826f; font-weight: lighter;text-decoration: line-through;"> </span> Giá : @Html.DisplayFor(model => model.data.giaban) <span>VNĐ</span>
                         </p>
                     </div>
-                    <form asp-controller="Home" asp-action="Add" asp-route-idspct="@Model.data.idsqct">
+                    <form asp-controller="Home" asp-action="Add" asp-route-id="@Model.data.idsqct">
                         <div class="ship">
                             <p>
                                 Vận chuyển
                                 <span class><i class="bi bi-truck"></i> Miễn phí vận chuyển</span>
                             </p>
                             @*                        @if (name != null)
-                            {
-                            <p class="p">
-                            <i class="bi bi-truck" style="color: #000"></i> Vận chuyển tới
-                            <span>
-                            @diachi
-                            </span>
-                            </p>
-                            }
-                            *@
+                        {
+                        <p class="p">
+                        <i class="bi bi-truck" style="color: #000"></i> Vận chuyển tới
+                        <span>
+                        @diachi
+                        </span>
+                        </p>
+                        }
+                        *@
                             <p class="p2">
                                 Phí vận chuyển
                                 <span> 0đ</span>
                             </p>
                             <p class="p4">
-                                @*                            @if (loi != null)
+                                @if (ViewBag.errorSize != null)
                                 {
-                                <div class="alert alert-danger">
-                                @loi
-                                </div>
-                                }*@
+                                    <div class="alert alert-danger">
+                                        @ViewBag.errorSize
+                                    </div>
+                                }
 
                                 Size:
                                 @foreach (var item in Model.data.lstsize)
@@ -103,12 +150,12 @@
                                 <button type="button" value="" class="btn btn-secondary">@Html.DisplayFor(model => model.data.mausac)</button>
                             </p>
                             <p class="p3">
-                                @*                            @if (loi != null)
+                                @if (ViewBag.errorSoLuong != null)
                                 {
-                                <div class="alert alert-danger">
-                                @loi
-                                </div>
-                                }*@
+                                    <div class="alert alert-danger">
+                                        @ViewBag.errorSoLuong
+                                    </div>
+                                }
                                 Số lượng
                                 <input type="number" name="soluong" value="1" />
                             </p>
@@ -129,5 +176,8 @@
             </div>
         </div>
     </div>
-</body>
-</html>
+}
+else
+{
+    <diV class="alert alert-danger">@Model.message</diV>
+}

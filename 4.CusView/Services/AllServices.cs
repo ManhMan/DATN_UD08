@@ -31,6 +31,16 @@ namespace _4.CusView.Services
             return models;
         }
 
+        public async Task<CartRequest> GetAllViewCart<CartRequest>(string url)
+        {
+            CartRequest? models;
+            var httpClient = new HttpClient();
+            var response = await httpClient.GetAsync(url);
+            string TResponse = await response.Content.ReadAsStringAsync();
+            models = JsonConvert.DeserializeObject<CartRequest>(TResponse);
+            return models;
+        }
+
         public async Task<SanPhamChiTietRequest> GetAllViewSPCT<SanPhamChiTietRequest>(string url)
         {
             SanPhamChiTietRequest? models;

@@ -59,48 +59,6 @@
                 <h2> <SPan>&diams;</SPan> SẢN PHẨM MỚI <SPan>&diams;</SPan></h2>
                 <P class="title">Các sản phẩm mới tại cửa hàng</P>
                 <div class="row row-cols-1 row-cols-md-4 g-4">
-                    @* <div class="col">
-                    <div class="card h-70 text-center">
-                    <img src="{{products[0].avatar}}"
-                    class="card-img img-fluid"
-                    alt="" />
-                    <div class="card-body">
-                    <h5 class="card-title">
-                    <a href="#ChiTietSP/0">{{products[0].name}}</a>
-                    <p class="card-text">${{products[0].giaBan}}</p>
-                    </h5>
-                    <p class="card-textt"></p>
-                    <div class="d-grid col-10 mx-auto">
-                    <button class="btn btn-outline-light border-radius-sm"
-                    type="button">
-                    <i class="bi bi-cart-dash-fill"></i>
-                    Thêm vào giỏ hàng
-                    </button>
-                    </div>
-                    </div>
-                    </div>
-                    </div>
-                    <div class="col">
-                    <div class="card h-70 text-center">
-                    <img src="{{products[2].avatar}}"
-                    class="card-img img-fluid"
-                    alt="" />
-                    <div class="card-body">
-                    <h5 class="card-title">
-                    <a href="#ChiTietSP/2">{{products[2].name}}</a>
-                    <p class="card-text">${{products[2].giaBan}}</p>
-                    </h5>
-                    <p class="card-textt"></p>
-                    <div class="d-grid col-10 mx-auto">
-                    <button class="btn btn-outline-light border-radius-sm"
-                    type="button">
-                    <i class="bi bi-cart-dash-fill"></i>
-                    Thêm vào giỏ hàng
-                    </button>
-                    </div>
-                    </div>
-                    </div>
-                    </div>*@
 
                     @if (Model.error == 0)
                     {
@@ -108,14 +66,17 @@
                         {
                             <div class="col">
                                 <div class="card h-70 text-center">
-                                    <a href="/home/chitietsanpham/@item.Id">
-                                        <img src="~/img/PRODUCT/@item.AnhDaiDien"
-                                             class="card-img img-fluid"
-                                             alt="Ảnh sản phẩm" />
+                                    <a >
+                                        <a href="/home/chitietsanpham/@item.Id">
+                                            <img src="~/img/PRODUCT/@item.AnhDaiDien"
+                                                 class="card-img img-fluid"
+                                                 alt="Ảnh sản phẩm" />
+                                        </a>
+
                                         <div class="card-body">
                                             <h5 class="card-title">
                                                 <a>@item.TenSPChiTiet [@item.TenMauSac]</a>
-                                                <a class="card-text">$@item.GiaBan <del style="color:azure">$@(item.GiaBan + 20000)</del></a>
+                                                <p class="card-text">$@item.GiaBan <del style="color:#adadad">$@(item.GiaBan + 20000)</del></p>
                                             </h5>
                                             <p class="card-textt"></p>
                                             @*                                        <div class="d-grid col-10 mx-auto">

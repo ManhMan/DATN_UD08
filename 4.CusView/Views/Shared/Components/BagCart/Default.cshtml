@@ -1,0 +1,17 @@
+﻿@model CustomerViews.Models.BagCartViewModel
+@if (Model != null)
+{
+    <img class="circle" width="25px" height="25px" src="~/img/icon/shopping_cart_FILL0_wght500_GRAD0_opsz48.svg" />
+    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+        @Model.numberOfItems
+    </span>
+
+
+}
+else
+{
+
+    <img class="circle" width="25px" height="25px" src="~/img/icon/shopping_cart_FILL0_wght500_GRAD0_opsz48.svg" />
+}
+
+

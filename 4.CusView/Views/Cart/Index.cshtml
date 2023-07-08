@@ -1,0 +1,94 @@
+﻿@using _4.CusView.ModelRequest;
+@model CartRequest
+
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    decimal tongtien = 0;
+}                        @if (Model.data != null && Model.data.Count() > 0)
+{
+    <section class="pt-5 pb-5">
+        <div class="container">
+            <div class="row w-100">
+                <div class="col-lg-12 col-md-12 col-12">
+                    <h3 class="display-5 mb-2 text-center">Giỏ Hàng</h3>
+                    <p class="mb-5 text-center">
+                        <i class="text-info font-weight-bold">@Model.numberOfItems</i> sản phẩm trong giỏ hàng
+                    </p>
+                    <table id="shoppingCart" class="table table-condensed table-responsive">
+                        <thead>
+                            <tr>
+                                <th style="width:60%">Sản phẩm</th>
+                                <th style="width:12%">Giá</th>
+                                <th style="width:10%">Số lượng</th>
+                                <th style="width:10%">Thành Tiền</th>
+                                <th style="width:16%"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model.data)
+                            {
+                                <tr>
+                                    <td data-th="Product">
+                                        <div class="row">
+                                            <div class="col-md-3 text-left">
+                                                <img src="~/img/PRODUCT/@item.AnhSanPham" alt="" class="img-fluid d-none d-md-block rounded mb-2 shadow ">
+                                            </div>
+                                            <div class="col-md-9 text-left mt-sm-2">
+                                                <h4>@item.TenSanPham</h4>
+                                                <p class="font-weight-light">@item.LoaiHang</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td data-th="Price">@item.GiaBan$</td>
+                                    <td data-th="Quantity">
+                                        <a asp-action="GiamSL" asp-route-id="@item.Id" class="btn btn-sm btn-primary"> - </a>
+                                        <a>@item.SoLuong</a>
+                                        <a asp-action="TangSL" asp-route-id="@item.Id" class="btn btn-sm btn-primary"> + </a>
+
+
+                                    </td>
+                                    <td>
+                                        @(tongtien = item.GiaBan * item.SoLuong)$
+                                    </td>
+                                    <td class="actions" data-th="">
+                                        <div class="text-right">
+                                            <a href="/cart/removeitem/@item.Id"><img src="~/img/icon/remove.png" alt="RemoveCart" style="margin-left:50%" /></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+
+
+                        </tbody>
+                    </table>
+                    <div class="float-end text-right">
+                        <h4>Tổng tiền:</h4>
+                        <h1 class="text text-danger">@Model.totalPriceOfItems$</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4 ">
+                <div class="col-sm-6 order-md-2 float-end">
+                    <a href="#" class="btn btn-primary mb-4 btn-lg pl-5 pr-5 float-end">Đặt hàng</a>
+                </div>
+                <div class="col-sm-6 mb-3 mb-m-1 order-md-1 text-md-left">
+                    <a href="/">
+                        &#8617; Tiếp tục mua hàng
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+else
+{
+
+    <h1> Chưa có sản phẩm nào trong giỏ hàng</h1>
+    <a asp-action="Index" asp-controller="Home">về trang chủ</a>
+}
+
+
