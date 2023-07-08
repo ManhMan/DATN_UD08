@@ -21,5 +21,6 @@ namespace _4.CusView.ModelRequest
         public string? Sdt { get; set; }
         [Required(ErrorMessage = "Vui lòng nhập ngày sinh")]
         public DateTime? NgaySinh { get; set; }
+        public string? MaXacNhan { get; set; }
     }
 }

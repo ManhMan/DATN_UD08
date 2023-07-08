@@ -9,6 +9,8 @@ using System.Net.Mail;
 using System.Net;
 using System.Text;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using System.Net.WebSockets;
+using System;
 
 namespace _4.CusView.Controllers
 {
@@ -27,11 +29,11 @@ namespace _4.CusView.Controllers
         }
         public IActionResult DangNhap()
         {
-            if (Request.Cookies["Email"] != null)
+            if (Request.Cookies.ContainsKey("Pass"))
             {
                 ViewData["Email"] = Request.Cookies["Email"];
-                ViewData["Pass"] = Request.Cookies["Pass"];
-                return View();
+                var a = ParseLai(Request.Cookies["Pass"]);
+                ViewData["Pass"] = a;
             }
             return View();
         }
@@ -76,7 +78,8 @@ namespace _4.CusView.Controllers
                                     HttpOnly = true
                                 };
                                 Response.Cookies.Append("Email", kh.Email, op);
-                                Response.Cookies.Append("Pass", kh.MatKhau, op);
+                                var a = ParseDi(kh.MatKhau);
+                                Response.Cookies.Append("Pass", a, op);
 
                                 return RedirectToAction("Index", "Home");
                             }
@@ -124,16 +127,26 @@ namespace _4.CusView.Controllers
                 }
                 else
                 {
-                    var success = await _services.Add<DangKyRequestModel>(StrConnection.api + "KhachHangs/", request);
-                    if (success != null)
+                    string a = TempData["mxn"].ToString();
+
+					if (request.MaXacNhan == a)
                     {
-                        ViewData["dangkythanhcong"] = "Đăng ký thành công!!!";
-                        return View("DangNhap");
+                        var success = await _services.Add<DangKyRequestModel>(StrConnection.api + "KhachHangs/", request);
+                        if (success != null)
+                        {
+                            ViewData["dangkythanhcong"] = "Đăng ký thành công!!!";
+                            return View("DangNhap");
+                        }
+                        else
+                        {
+                            return View("DangKy");
+                        }
                     }
                     else
                     {
-                        return View("DangKy");
+                        return Ok("Sai mã xác nhận rồi");
                     }
+                    
                 }
             }
             return View("DangKy");
@@ -185,6 +198,52 @@ namespace _4.CusView.Controllers
                 throw new Exception("Error in base64Encode" + ex.Message);
             }
         }
+		public async Task<IActionResult> LayMaXacNhan(DangKyRequestModel request)
+		{
+			var lstKH = await _services.GetAll<KhachHang>(StrConnection.api + "KhachHangs/Get-All");
+			var checkEmail = lstKH.FirstOrDefault(p => p.Email == request.Email);
+			if (checkEmail != null)
+			{
+				ViewData["thongbaoEmail"] = "Email đã tồn tại, vui lòng sử dụng Email khác!";
+                ViewData["guiEmail"] = null;
+			}
+            else
+            {
+				ViewData["guiEmail"] = "Mã xác nhận đã được gửi đi!";
+                guiEmail(request.Email,null);
+
+            }
+            return View("DangKy",request);
+		}
+		public static string GenerateRandomString(int length)
+		{
+			Random random = new Random();
+			string characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";char[] result = new char[length];
+			bool hasLetter = false;
+			bool hasDigit = false;
+
+			for (int i = 0; i < length; i++)
+			{
+				result[i] = characters[random.Next(characters.Length)];
+
+				if (char.IsLetter(result[i]))
+				{
+					hasLetter = true;
+				}
+				else if (char.IsDigit(result[i]))
+				{
+					hasDigit = true;
+				}
+			}
+
+			if (!hasLetter || !hasDigit)
+			{
+				// Nếu chuỗi không có chữ hoặc không có số, thực hiện đệ quy để tạo lại chuỗi khác
+				return GenerateRandomString(length);
+			}
+
+			return new string(result);
+		}
 		public async Task<IActionResult> UpdateKH()
 		{
 			var id = HttpContext.Session.GetString("idkh");
@@ -303,11 +362,28 @@ namespace _4.CusView.Controllers
             var tk = lstKH.FirstOrDefault(p => p.Email == request.Email && p.Sdt == request.SDT);
             if (tk != null)
             {
+                guiEmail(tk.Email, tk.MatKhau);
+                ViewData["dangkythanhcong"] = "Lấy lại mật khẩu thành công. Vui lòng Kiểm tra email !";
+                return View("DangNhap");
+            }
+            else
+            {
+                ViewData["check"] = "Email hoặc số điện thoại không đúng";
+                return View("QuenMK");
+            }
+        }
+
+        public void guiEmail(string email, string pass)
+        {
+            if (pass == null)
+            {
+                var maxacnhan = GenerateRandomString(6);
+                TempData["mxn"] = maxacnhan;
                 var fromAddress = new MailAddress("nguyenhuukhoa5462@gmail.com");
-                var toAddress = new MailAddress(tk.Email);
+                var toAddress = new MailAddress(email);
                 const string fromPassword = "mqanjbksawuxofko";
-                string subject = "Quên mật khẩu";
-                string body = "Mật khẩu của bạn là: " + tk.MatKhau;
+                string subject = "Mã xác nhận ";
+                string body = "Mã xác nhận của bạn là: " + maxacnhan;
 
                 var smtp = new SmtpClient
                 {
@@ -326,15 +402,35 @@ namespace _4.CusView.Controllers
                 {
                     smtp.Send(message);
                 }
-                ViewData["dangkythanhcong"] = "Lấy lại mật khẩu thành công. Vui lòng Kiểm tra email !";
-                return View("DangNhap");
             }
             else
             {
-                ViewData["check"] = "Email hoặc số điện thoại không đúng";
-                return View("QuenMK");
-            }
-        }
+                var fromAddress = new MailAddress("nguyenhuukhoa5462@gmail.com");
+                var toAddress = new MailAddress(email);
+                const string fromPassword = "mqanjbksawuxofko";
+                string subject = "Mã xác nhận ";
+                string body = "Mật khẩu của bạn là: " + pass;
 
+                var smtp = new SmtpClient
+                {
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+                };
+                using (var message = new MailMessage(fromAddress, toAddress)
+                {
+                    Subject = subject,
+                    Body = body
+                })
+                {
+                    smtp.Send(message);
+                }
+            }
+            
+        }
+        
     }
 }
